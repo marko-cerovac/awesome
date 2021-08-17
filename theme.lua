@@ -5,7 +5,7 @@
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
-local gears = require("gears")
+-- local gears = require("gears")
 
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
@@ -63,18 +63,33 @@ theme.taglist_fg_occupied = theme.disabled
 theme.taglist_fg_urgent = theme.red
 
 -- Tasklist colors
+theme.tasklist_bg_normal = theme.bg
+theme.tasklist_fg_normal = theme.fg
 theme.tasklist_bg_focus = theme.bg
+theme.tasklist_fg_focus = theme.white
+theme.tasklist_border = theme.active
+theme.tasklist_border_focus = theme.accent
+
+-- Widgets colors
+theme.battery_fg = theme.green
+theme.brightness_fg = theme.yellow
+theme.volume_fg = theme.purple
+theme.network_fg = theme.red
 
 -- Hotkeys popup
-theme.hotkeys_opacity = 0.8
+theme.hotkeys_opacity = 0.84
 theme.hotkeys_bg = theme.bg
 theme.hotkeys_fg = theme.fg
-theme.hotkeys_border_width = 2
-theme.hotkeys_border_color = theme.bg
-theme.hotkeys_modifiers_fg = theme.accent
-theme.hotkeys_label_fg = theme.green
+theme.hotkeys_border_width = 1
+theme.hotkeys_border_color = theme.accent
+theme.hotkeys_modifiers_fg = theme.paleblue
+theme.hotkeys_label_fg = theme.bg_alt
 theme.hotkeys_font = "SauceCodePro Nerd Font 10"
 theme.hotkeys_description_font = "SauceCodePro Nerd Font 10"
+theme.hotkeys_group_margin = 28
+
+-- Add utilities directory
+theme.util_dir = "/home/marko/.config/awesome/util/"
 
 -- There are other variable sets
 -- overriding the default one when
@@ -103,23 +118,25 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 -- notification_[bg|fg]
 -- notification_[width|height|margin]
 -- notification_[border_color|border_width|shape|opacity]
-
 theme.notification_font = "SauceCodePro Nerd Font 12"
-theme.notification_bg = theme.bg_alt
-theme.notification_fg = theme.fg
-theme.notification_opacity = 0.8
+theme.notification_bg = theme.bg .. "A0"
+theme.notification_fg = theme.white
+theme.notification_border_color = theme.accent
+theme.notification_border_width = 1
+-- theme.notification_opacity = 0.8
 
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
 theme.menu_submenu_icon = themes_path.."default/submenu.png"
-theme.menu_height = dpi(15)
-theme.menu_width  = dpi(100)
-
--- You can add as many variables as
--- you wish and access them by using
--- beautiful.variable in your rc.lua
---theme.bg_widget = "#cc0000"
+theme.menu_height = dpi(20)
+theme.menu_width  = dpi(240)
+-- theme.menu_border_color = theme.accent
+theme.bg_normal = theme.bg .. "A0"
+theme.fg_normal = theme.fg
+theme.bg_focus = theme.active .. "A0"
+theme.fg_focus = theme.accent
+theme.menu_font = "SauceCodePro Nerd Font 12"
 
 -- Define the image to load
 theme.wallpaper = "/home/marko/.config/awesome/wallpaper.jpg"
@@ -142,14 +159,9 @@ theme.layout_cornerne = themes_path.."default/layouts/cornernew.png"
 theme.layout_cornersw = themes_path.."default/layouts/cornersww.png"
 theme.layout_cornerse = themes_path.."default/layouts/cornersew.png"
 
--- Generate Awesome icon:
---[[ theme.awesome_icon = theme_assets.awesome_icon(
-    theme.menu_height, theme.bg_focus, theme.fg_focus
-) ]]
-
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
-theme.icon_theme = nil
+theme.icon_theme = "Sweet-Blue"
 
 return theme
 

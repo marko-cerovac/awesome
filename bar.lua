@@ -17,25 +17,6 @@ local menubar = require("menubar")
 
 local widgets = require("widgets")
 
--- Create a launcher widget and a main menu
---[[ myawesomemenu = {
-   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", function() awesome.quit() end },
-}
-
--- Create menu
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal },
-                                    { "open file explorer", "st -e ranger" },
-                                    { "open office suite", "libreoffice" }
-                                  }
-                        })
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu }) ]]
-
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 
@@ -121,6 +102,7 @@ awful.screen.connect_for_each_screen(function(s)
                 widget = wibox.container.margin
             },
             id = 'background_role',
+			shape = gears.shape.powerline,
             widget = wibox.container.background,
         },
         buttons = taglist_buttons
@@ -132,16 +114,9 @@ awful.screen.connect_for_each_screen(function(s)
         filter  = awful.widget.tasklist.filter.currenttags,
         buttons = tasklist_buttons,
 		style = {
-			bg_normal = beautiful.bg,
-			fg_normal = beautiful.fg,
-			bg_focus = beautiful.bg,
-			fg_focus = beautiful.fg,
-
 			shape_border_width = 1,
-			-- shape_border_color = theme.active,
-			-- shape_border_color_focus = theme.disabled,
-			shape_border_color = beautiful.active,
-			shape_border_color_focus = beautiful.accent,
+			shape_border_color = beautiful.tasklist_border,
+			shape_border_color_focus = beautiful.tasklist_border_focus,
 			shape = gears.shape.powerline,
 			disable_icon = true,
 		},
@@ -187,7 +162,7 @@ awful.screen.connect_for_each_screen(function(s)
     }
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
+    s.mywibox = awful.wibar({ position = "top", screen = s, bg = beautiful.bg_normal .. "A0" })
 
     -- Add widgets
     s.mywibox:setup {
@@ -195,7 +170,7 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             spacing = -20,
-            widgets.OSlogo,
+            widgets.oslogo,
             s.mytaglist,
             s.mylayout,
             -- mylauncher,
@@ -207,17 +182,21 @@ awful.screen.connect_for_each_screen(function(s)
 			{
 				layout = wibox.layout.fixed.horizontal,
 				spacing = -14,
-				widgets.brightness,
-				widgets.battery,
-				widgets.arrowLeft({bg = beautiful.disabled, fg = beautiful.accent}),
-				widgets.volume,
+				widgets.volume.volume,
+				widgets.sepparators.arrowLeft({bg = beautiful.disabled, fg = beautiful.accent}),
+				widgets.brightness.brightness,
+				widgets.sepparators.arrowLeft({bg = beautiful.disabled, fg = beautiful.accent}),
+				widgets.battery.battery,
+				widgets.sepparators.arrowLeft({bg = beautiful.disabled, fg = beautiful.accent}),
+				widgets.network.network
 			},
-            widgets.textclock,
-			widgets.arrowLeft({bg = beautiful.bg_alt, fg = beautiful.accent}),
-            widgets.keyboardlayout,
-            widgets.sleep,
-			widgets.arrowLeft({bg = beautiful.accent, fg = beautiful.bg_alt}),
-			widgets.poweroff,
+            widgets.clock,
+			widgets.sepparators.arrowLeft({bg = beautiful.bg_alt, fg = beautiful.accent}),
+            widgets.keyboard,
+            widgets.logout.sleep,
+			widgets.sepparators.arrowLeft({bg = beautiful.accent, fg = beautiful.bg_alt}),
+			widgets.logout.poweroff,
         },
     }
 end)
+

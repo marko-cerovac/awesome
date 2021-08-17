@@ -1,6 +1,7 @@
 -- Standard awesome library
 local gears = require('gears')
 local awful = require('awful')
+local util_dir = require('beautiful').util_dir
 
 -- Popup keys
 local hotkeys_popup = require("awful.hotkeys_popup")
@@ -15,7 +16,7 @@ modkey = 'Mod4'
 
 -- Mouse bindings
 root.buttons(gears.table.join(
-    -- awful.button({ }, 3, function () mymainmenu:toggle() end),
+    awful.button({ }, 3, function () widgets.menu.menu:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
 ))
@@ -31,7 +32,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
     -- Show help screen
-    awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
+    awful.key({ modkey,           }, "s", hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
 
     -- Window navigation and resizing
@@ -100,7 +101,34 @@ globalkeys = gears.table.join(
               {description = "previous layout", group = "layout"}),
 
 
+    -- Tags
+
+    -- View previous tag
+    awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
+              {description = "view previous", group = "tag"}),
+
+    -- View next tag
+    awful.key({ modkey,           }, "Right",  awful.tag.viewnext,
+              {description = "view next", group = "tag"}),
+
+    -- View previous tag
+    awful.key({ modkey,           }, "d",   awful.tag.viewprev,
+              {description = "view previous", group = "tag"}),
+
+    -- View next tag
+    awful.key({ modkey,           }, "f",  awful.tag.viewnext,
+              {description = "view next", group = "tag"}),
+
+    -- Restore tags
+    awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
+              {description = "go back", group = "tag"}),
+
+
     -- Launch mappings
+
+	-- Show main menu
+    awful.key({ modkey,           }, "w", function () widgets.menu.menu:show() end,
+              {description = "show main menu", grup = "awesome"}),
 
     -- Terminal
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
@@ -108,26 +136,36 @@ globalkeys = gears.table.join(
 
 	-- St
     awful.key({ modkey },            "t",     function () awful.util.spawn("st") end,
-              {description = "Launch Rofi run prompt", group = "launcher"}),
+              {description = "Launch st terminal", group = "launcher"}),
+
+	-- NeoVide
+    awful.key({ modkey },            "v",     function () awful.util.spawn("neovide") end,
+              {description = "Launch NeoVide", group = "launcher"}),
 
     -- Rofi
     awful.key({ modkey },            "r",     function () awful.util.spawn("rofi -show drun") end,
               {description = "Launch Rofi run prompt", group = "launcher"}),
 
-    -- Ranger
-    awful.key({ modkey },            "e",     function () awful.util.spawn("alacritty -e ranger") end,
+    -- Dmenu
+    awful.key({ modkey },            ";",     function () awful.util.spawn("dmenu_run -c -l 10 -p Run:") end,
+              {description = "Launch Dmenu run prompt", group = "launcher"}),
+
+    -- File manager
+    awful.key({ modkey },            "e",     function () awful.util.spawn("alacritty -e joshuto") end,
               {description = "Launch Ranger file manager", group = "launcher"}),
 
-    -- Nemo
-    awful.key({ modkey },            "n",     function () awful.util.spawn("nemo") end,
-              {description = "Launch Nemo file manager", group = "launcher"}),
+    -- Pcmanfm
+    awful.key({ modkey },            "n",     function () awful.util.spawn("pcmanfm") end,
+              {description = "Launch Pcmanfm file manager", group = "launcher"}),
 
     -- Brave
     awful.key({ modkey },            "b",     function () awful.util.spawn("brave") end,
               {description = "Launch Brave browser", group = "launcher"}),
+    awful.key({ modkey },            "i",     function () awful.util.spawn("brave --incognito") end,
+              {description = "Launch Brave browser (incognito mode)", group = "launcher"}),
 
     -- Pavucontrol
-    awful.key({ modkey },            "v",     function () awful.util.spawn("pavucontrol") end,
+    awful.key({ modkey },            "p",     function () awful.util.spawn("pavucontrol") end,
               {description = "Launch Pavucontrol volume control", group = "launcher"}),
 
 
@@ -136,21 +174,21 @@ globalkeys = gears.table.join(
 	-- Mute the volume
 	awful.key({},	  "XF86AudioMute", function ()
 		awful.util.spawn("pactl set-sink-mute 0 toggle")
-        widgets.myvolume.update()
+        widgets.volume.myvolume.update()
 		end,
 			  {description = "Mute volume", group = "control"}),
 
 	-- Raise the volume
 	awful.key({},	  "XF86AudioRaiseVolume", function()
 		awful.util.spawn("pactl set-sink-volume 0 +10%")
-        widgets.myvolume.update()
+        widgets.volume.myvolume.update()
 		end,
 			  {description = "Raise volume", group = "control"}),
 
 	-- Lower the volume
 	awful.key({},	  "XF86AudioLowerVolume", function()
 		awful.util.spawn("pactl set-sink-volume 0 -10%")
-        widgets.myvolume.update()
+        widgets.volume.myvolume.update()
 		end,
 			  {description = "Lower volume", group = "control"}),
 
@@ -163,12 +201,14 @@ globalkeys = gears.table.join(
 	-- Increase brightness by 5%
 	awful.key({},	  "XF86MonBrightnessUp", function ()
 		awful.util.spawn("brightnessctl --device='amdgpu_bl0' s +5%")
+		widgets.brightness.brightnessTimer:emit_signal("timeout")
 		end,
 			  {description = "Increase brightness by 5%", group = "control"}),
 
 	-- Decrease brightness by 5%
 	awful.key({},	  "XF86MonBrightnessDown", function ()
 		awful.util.spawn("brightnessctl --device='amdgpu_bl0' s 5%-")
+		widgets.brightness.brightnessTimer:emit_signal("timeout")
 		end,
 			  {description = "Decrease brightness by 5%", group = "control"}),
 
@@ -180,8 +220,12 @@ globalkeys = gears.table.join(
 
 	-- Lock screen
 	awful.key({},	  "XF86Display", function () awful.util.spawn("slock") end,
-			  {description = "Lock screen", group = "control"})
+			  {description = "Lock screen", group = "control"}),
 
+
+    -- Poweroff
+    awful.key({ modkey,         },       "x", function () awful.util.spawn(util_dir .. "logout.sh") end,
+              {description = "Shut down", group = "awesome"})
 )
 
 clientkeys = gears.table.join(
@@ -207,7 +251,7 @@ clientkeys = gears.table.join(
               {description = "toggle floating", group = "client"}),
 
     -- Move window to master
-    awful.key({ modkey, "Shift" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
+    awful.key({ modkey,         }, "a", function (c) c:swap(awful.client.getmaster()) end,
               {description = "move to master", group = "client"}),
 
     -- Move to screen
@@ -218,7 +262,7 @@ clientkeys = gears.table.join(
     awful.key({ modkey, "Shift"   }, "t",      function (c) c.ontop = not c.ontop            end,
               {description = "toggle keep on top", group = "client"}),
 
-	-- Unmaximize all windows
+	-- Restore minimized client
     awful.key({ modkey, "Shift"   }, "m", function ()
                   local c = awful.client.restore() if c then c:emit_signal( "request::activate", "key.unminimize", {raise = true}) end end,
               {description = "restore minimized", group = "client"}),
@@ -229,20 +273,7 @@ clientkeys = gears.table.join(
 
     -- Decrease window gap
     awful.key({ modkey,           }, "[", function () awful.tag.incgap(-2)                end,
-              {description = "decrease window gap", group = "layout"}),
-
-    -- View previous tag
-    awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
-              {description = "view previous", group = "tag"}),
-
-    -- View next tag
-    awful.key({ modkey,           }, "Right",  awful.tag.viewnext,
-              {description = "view next", group = "tag"}),
-
-    -- Restore tags
-    awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
-              {description = "go back", group = "tag"})
-
+              {description = "decrease window gap", group = "layout"})
 )
 
 -- Workspace mappings
