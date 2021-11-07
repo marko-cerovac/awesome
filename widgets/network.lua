@@ -49,7 +49,7 @@ Network.network:connect_signal("mouse::leave", function (c)
 end)
 Network.network:connect_signal("button::press", function(c,_,_,button)
 	if button == 1 then
-		awful.util.spawn("alacritty -e iwctl")
+		awful.util.spawn("iwgtk")
 		Network.networkTimer:emit_signal("timeout")
     end
 end)

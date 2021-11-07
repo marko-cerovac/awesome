@@ -26,6 +26,15 @@ Battery.batteryLevel, Battery.batteryTimer = awful.widget.watch(
         widget.align = "center"
         if state == "C" then
             widget:set_markup(" " .. level .. "% (Charging)")
+			if level == 80 then
+				naughty.notify({
+					title = " Battery charged 80%",
+					text = "Disconnect the charger",
+					timeout = 10,
+					bg = beautiful.notification_bg,
+					fg = beautiful.green,
+				})
+			end
 		elseif level <= 5 then
             widget:set_markup("  " .. level .. "% ")
 			naughty.notify({
@@ -36,12 +45,19 @@ Battery.batteryLevel, Battery.batteryTimer = awful.widget.watch(
 				fg = beautiful.red,
                 border_color = beautiful.red,
 			})
-		elseif level <= 15 then
+		elseif level == 10 then
+			widget:set_markup("  " .. level .. "% ")
+			naughty.notify({
+				title = " Battery low",
+				text = "The battery level is low: " .. level .. "%",
+				timeout = 10
+			})
+		elseif level == 15 then
             widget:set_markup("  " .. level .. "% ")
 			naughty.notify({
 				title = " Battery low",
 				text = "The battery level is low: " .. level .. "%",
-				timeout = 5
+				timeout = 10
 			})
         elseif level <= 30 then
             widget:set_markup("  " .. level .. "% ")

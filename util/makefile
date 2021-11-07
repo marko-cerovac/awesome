@@ -9,4 +9,5 @@ brightness: brightness.c
 battery: battery.c
 	$(cc) $^ -o $@
 
-clean: rm battery brightness
+clean:
+	rm -rf battery brightness

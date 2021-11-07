@@ -107,12 +107,14 @@ awful.rules.rules = {
           -- "Blueman-manager",
           -- "Gpick",
           "Galculator",
+		  "Iwgtk",
           -- "Kruler",
           -- "MessageWin",  -- kalarm.
           -- "Sxiv",
           "LibreOffice",
           -- "Wpa_gui",
-          "pcmanfm",
+          -- "Pcmanfm",
+		  -- "Thunar",
           -- "veromix",
           "xtightvncviewer"
         },

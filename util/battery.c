@@ -1,8 +1,8 @@
 #include <stdio.h>
 
 // The program prints the current battery capacity
-// If the battery is plugged to AC, the first letter is C
-// If the battery is running on it's own power, the first letter is B
+// If the battery is plugged to AC, the first letter of the output is C
+// If the battery is running on it's own power, the first letter of the output is B
 
 char acFile[] = "/sys/class/power_supply/AC/online";
 char batFile[] = "/sys/class/power_supply/BAT0/capacity";

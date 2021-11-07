@@ -30,9 +30,9 @@ local control = {
 
 -- Create menu
 Menu.menu = awful.menu({ items = { { " awesome", awesomemenu, beautiful.awesome_icon },
-                                    { "漣 control settings", control },
+                                    { "漣control settings", control },
                                     { " open terminal", terminal },
-                                    { " open file explorer", "st -e ranger" },
+                                    { " open file explorer", "pcmanfm" },
                                     { " open run prompt", "dmenu_run -l 10 -c" },
                                     { " open visual editor", "neovide" },
                                     { " open office suite", "libreoffice" },

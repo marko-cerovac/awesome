@@ -1,5 +1,5 @@
 ---------------------------
--- Default awesome theme --
+--   Deep Ocean theme    --
 ---------------------------
 
 local theme_assets = require("beautiful.theme_assets")
@@ -17,7 +17,7 @@ theme.font          = "SauceCodePro Nerd Font 10"
 -- Material Deep Ocean color theme
 theme.bg	    = "#0F111A"
 theme.bg_alt	    = "#090B10"
-theme.fg	    = "#8F93A2"
+theme.fg	    = "#A6ACCD"
 theme.active        = "#1A1C25"
 theme.highlight     = "#1F2233"
 theme.text          = "#717CB4"
@@ -47,7 +47,9 @@ theme.fg_minimize   = theme.disabled
 -- Client borders
 theme.useless_gap   = dpi(6)
 theme.border_width  = dpi(1)
-theme.border_normal = theme.bg
+-- theme.border_normal = theme.bg
+-- theme.border_focus  = theme.paleblue
+theme.border_normal = theme.disabled
 theme.border_focus  = theme.accent
 theme.border_marked = theme.red
 
@@ -77,11 +79,11 @@ theme.volume_fg = theme.purple
 theme.network_fg = theme.red
 
 -- Hotkeys popup
-theme.hotkeys_opacity = 0.84
-theme.hotkeys_bg = theme.bg
+theme.hotkeys_opacity = 1
+theme.hotkeys_bg = theme.bg_alt .. "D0"
 theme.hotkeys_fg = theme.fg
-theme.hotkeys_border_width = 1
-theme.hotkeys_border_color = theme.accent
+-- theme.hotkeys_border_width = 0
+-- theme.hotkeys_border_color = theme.accent
 theme.hotkeys_modifiers_fg = theme.paleblue
 theme.hotkeys_label_fg = theme.bg_alt
 theme.hotkeys_font = "SauceCodePro Nerd Font 10"
@@ -119,10 +121,10 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 -- notification_[width|height|margin]
 -- notification_[border_color|border_width|shape|opacity]
 theme.notification_font = "SauceCodePro Nerd Font 12"
-theme.notification_bg = theme.bg .. "A0"
-theme.notification_fg = theme.white
-theme.notification_border_color = theme.accent
-theme.notification_border_width = 1
+theme.notification_bg = theme.bg_alt .. "C0"
+theme.notification_fg = theme.fg
+-- theme.notification_border_color = theme.accent
+theme.notification_border_width = 0
 -- theme.notification_opacity = 0.8
 
 -- Variables set for theming the menu:
@@ -132,9 +134,9 @@ theme.menu_submenu_icon = themes_path.."default/submenu.png"
 theme.menu_height = dpi(20)
 theme.menu_width  = dpi(240)
 -- theme.menu_border_color = theme.accent
-theme.bg_normal = theme.bg .. "A0"
+theme.bg_normal = theme.bg_alt .. "C0"
 theme.fg_normal = theme.fg
-theme.bg_focus = theme.active .. "A0"
+theme.bg_focus = theme.active .. "C0"
 theme.fg_focus = theme.accent
 theme.menu_font = "SauceCodePro Nerd Font 12"
 

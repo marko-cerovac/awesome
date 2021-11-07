@@ -139,8 +139,11 @@ globalkeys = gears.table.join(
               {description = "Launch st terminal", group = "launcher"}),
 
 	-- NeoVide
-    awful.key({ modkey },            "v",     function () awful.util.spawn("neovide") end,
-              {description = "Launch NeoVide", group = "launcher"}),
+    --[[ awful.key({ modkey },            "v",     function () awful.util.spawn("neovide") end,
+              {description = "Launch NeoVide", group = "launcher"}), ]]
+	-- NeoVim
+    awful.key({ modkey },            "v",     function () awful.util.spawn("alacritty -e nvim") end,
+              {description = "Launch NeoVim", group = "launcher"}),
 
     -- Rofi
     awful.key({ modkey },            "r",     function () awful.util.spawn("rofi -show drun") end,
@@ -154,9 +157,9 @@ globalkeys = gears.table.join(
     awful.key({ modkey },            "e",     function () awful.util.spawn("alacritty -e joshuto") end,
               {description = "Launch Ranger file manager", group = "launcher"}),
 
-    -- Pcmanfm
-    awful.key({ modkey },            "n",     function () awful.util.spawn("pcmanfm") end,
-              {description = "Launch Pcmanfm file manager", group = "launcher"}),
+    -- Thunar
+    awful.key({ modkey },            "n",     function () awful.util.spawn("thunar") end,
+              {description = "Launch Thunar file manager", group = "launcher"}),
 
     -- Brave
     awful.key({ modkey },            "b",     function () awful.util.spawn("brave") end,
@@ -167,6 +170,10 @@ globalkeys = gears.table.join(
     -- Pavucontrol
     awful.key({ modkey },            "p",     function () awful.util.spawn("pavucontrol") end,
               {description = "Launch Pavucontrol volume control", group = "launcher"}),
+
+    -- Change Wallpaper
+    awful.key({ modkey },            "y",     function () awful.util.spawn_with_shell("~/.config/awesome/util/chwall.sh") end,
+              {description = "Change Wallpaper", group = "launcher"}),
 
 
 	-- Control keys
