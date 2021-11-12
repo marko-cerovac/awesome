@@ -175,6 +175,10 @@ globalkeys = gears.table.join(
     awful.key({ modkey },            "y",     function () awful.util.spawn_with_shell("~/.config/awesome/util/chwall.sh") end,
               {description = "Change Wallpaper", group = "launcher"}),
 
+    -- Change keyboard layout
+    awful.key({ modkey },            "0",     function () awful.util.spawn_with_shell("~/.config/awesome/util/kbdswitch.sh") end,
+              {description = "Change keyboard layout", group = "launcher"}),
+
 
 	-- Control keys
 
