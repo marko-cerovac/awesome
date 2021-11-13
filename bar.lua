@@ -153,7 +153,7 @@ awful.screen.connect_for_each_screen(function(s)
 		position = "top",
 		screen = s,
 		bg = beautiful.bg,
-		height = 30
+		height = 32
 	})
 
     -- Add widgets
@@ -171,24 +171,14 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            spacing = -14,
-			{
-				layout = wibox.layout.fixed.horizontal,
-				spacing = -14,
-				widgets.hello,
-				widgets.volume.volume,
-				widgets.sepparators.arrowLeft({bg = beautiful.disabled, fg = beautiful.accent}),
-				widgets.brightness.brightness,
-				widgets.sepparators.arrowLeft({bg = beautiful.disabled, fg = beautiful.accent}),
-				widgets.battery.battery,
-				widgets.sepparators.arrowLeft({bg = beautiful.disabled, fg = beautiful.accent}),
-				widgets.network.network
-			},
-            widgets.clock,
-			widgets.sepparators.arrowLeft({bg = beautiful.bg_alt, fg = beautiful.accent}),
+            spacing = 12,
+			widgets.volume.volume,
+			widgets.brightness.brightness,
+			widgets.battery.battery,
+			widgets.network.network,
             widgets.keyboard,
-            widgets.logout.sleep,
-			widgets.sepparators.arrowLeft({bg = beautiful.accent, fg = beautiful.bg_alt}),
+            widgets.clock,
+            -- widgets.logout.sleep,
 			widgets.logout.poweroff,
         },
     }

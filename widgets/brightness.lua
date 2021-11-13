@@ -8,7 +8,9 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 
 -- Shapes and sepparators library
-local powerArrow = require("widgets.sepparators").powerArrow
+-- local powerArrow = require("widgets.sepparators").powerArrow
+
+local pill = require("widgets.shapes").pill
 
 local Brightness = {}
 
@@ -23,28 +25,34 @@ Brightness.brightnessLevel, Brightness.brightnessTimer = awful.widget.watch(
 
 -- Brightness widget
 Brightness.brightness = wibox.widget {
-    {
-        {
-            wibox.widget.textbox(" "),
-            Brightness.brightnessLevel,
-            layout = wibox.layout.align.horizontal
-        },
-        left = 18,
-        right = 24,
-        widget = wibox.container.margin
-    },
-    bg = beautiful.disabled,
-    fg = beautiful.brightness_fg,
-    shape = powerArrow,
-    widget = wibox.container.background
+	{
+		{
+			{
+				wibox.widget.textbox(" "),
+				Brightness.brightnessLevel,
+				layout = wibox.layout.align.horizontal
+			},
+			left = 16,
+			right = 16,
+			widget = wibox.container.margin
+		},
+		bg = beautiful.highlight,
+		fg = beautiful.brightness_fg,
+		shape = pill,
+		widget = wibox.container.background
+	},
+	top = 4,
+	bottom = 4,
+	widget = wibox.container.margin
 }
-Brightness.brightness:connect_signal("mouse::enter", function (c)
-    c:set_bg(beautiful.lines)
+
+Brightness.brightness.widget:connect_signal("mouse::enter", function (c)
+    c:set_bg(beautiful.bg_alt)
 end)
-Brightness.brightness:connect_signal("mouse::leave", function (c)
-    c:set_bg(beautiful.disabled)
+Brightness.brightness.widget:connect_signal("mouse::leave", function (c)
+    c:set_bg(beautiful.highlight)
 end)
-Brightness.brightness:connect_signal("button::press", function(c,_,_,button)
+Brightness.brightness.widget:connect_signal("button::press", function(c,_,_,button)
         if button == 1 then
             Brightness.brightnessTimer:emit_signal("timeout")
     end

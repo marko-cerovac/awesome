@@ -26,6 +26,7 @@ local OSlogo = wibox.widget {
 	fg = beautiful.accent,
 	widget = wibox.container.background,
 }
+
 OSlogo:connect_signal("mouse::enter", function (c)
     c:set_bg(beautiful.bg)
     c:set_fg(beautiful.white)

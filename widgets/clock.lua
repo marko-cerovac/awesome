@@ -6,40 +6,45 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 
 -- Shapes and sepparators library
-local powerArrow = require("widgets.sepparators").powerArrow
+local pill = require("widgets.shapes").pill
 
 -- Create a textclock widget
 local textclock = wibox.widget {
-    {
-        {
-            {
-                text = " ",
-                widget = wibox.widget.textbox
-            },
-            {
-                widget = wibox.widget.textclock
-            },
-            widget = wibox.layout.fixed.horizontal
-        },
-        left = 20,
-        right = 20,
-        widget = wibox.container.margin
-    },
-    fg = beautiful.white,
-    bg = beautiful.bg_alt,
-    shape = powerArrow,
-    widget = wibox.container.background
+	{
+		{
+			{
+				{
+					text = " ",
+					widget = wibox.widget.textbox
+				},
+				{
+					widget = wibox.widget.textclock
+				},
+				widget = wibox.layout.fixed.horizontal
+			},
+			left = 20,
+			right = 16,
+			widget = wibox.container.margin
+		},
+		fg = beautiful.clock_fg,
+		bg = beautiful.highlight,
+		shape = pill,
+		widget = wibox.container.background
+	},
+	top = 4,
+	bottom = 4,
+	widget = wibox.container.margin
 }
 
 -- local clockTooltip = awful.tooltip {}
 -- clockTooltip:add_to_object(textclock)
 
-textclock:connect_signal("mouse::enter", function (c)
-	c:set_bg(beautiful.active)
+textclock.widget:connect_signal("mouse::enter", function (c)
+	c:set_bg(beautiful.bg_alt)
     -- clockTooltip.text = os.date("Today is %A %B %d %Y\nThe time is %T")
 end)
-textclock:connect_signal("mouse::leave", function (c)
-	c:set_bg(beautiful.bg_alt)
+textclock.widget:connect_signal("mouse::leave", function (c)
+	c:set_bg(beautiful.highlight)
 end)
 
 return textclock

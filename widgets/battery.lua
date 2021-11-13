@@ -11,7 +11,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 
 -- Shapes and sepparators library
-local powerArrow = require("widgets.sepparators").powerArrow
+local pill = require("widgets.shapes").pill
 
 local Battery = {}
  -- The battery program returns the charging state and the battery capacity
@@ -71,27 +71,32 @@ Battery.batteryLevel, Battery.batteryTimer = awful.widget.watch(
 	end
 )
 Battery.battery = wibox.widget {
-    {
-        {
-            widget = Battery.batteryLevel,
-        },
-        left = 10,
-        right = 16,
-        widget = wibox.container.margin
-    },
-    bg = beautiful.disabled,
-    fg = beautiful.battery_fg,
-    shape = powerArrow,
-    widget = wibox.container.background
+	{
+		{
+			{
+				widget = Battery.batteryLevel,
+			},
+			left = 10,
+			right = 12,
+			widget = wibox.container.margin
+		},
+		bg = beautiful.highlight,
+		fg = beautiful.battery_fg,
+		shape = pill,
+		widget = wibox.container.background
+	},
+	top = 4,
+	bottom = 4,
+	widget = wibox.container.margin
 }
-Battery.battery:connect_signal("mouse::enter", function (c)
-    c:set_bg(beautiful.lines)
+Battery.battery.widget:connect_signal("mouse::enter", function (c)
+    c:set_bg(beautiful.bg_alt)
 	Battery.batteryTimer:emit_signal("timeout")
 end)
-Battery.battery:connect_signal("mouse::leave", function (c)
-	c:set_bg(beautiful.disabled)
+Battery.battery.widget:connect_signal("mouse::leave", function (c)
+	c:set_bg(beautiful.highlight)
 end)
-Battery.battery:connect_signal("button::press", function(c,_,_,button)
+Battery.battery.widget:connect_signal("button::press", function(c,_,_,button)
 	if button == 1 then
 		awful.util.spawn("tlpui")
         Battery.batteryTimer:emit_signal("timeout")
