@@ -8,7 +8,7 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 
 -- Shapes and sepparators library
-local powerArrow = require("widgets.sepparators").powerArrow
+local pill = require("widgets.shapes").pill
 
 -- Widgets
 local Network = {}
@@ -25,29 +25,34 @@ Network.networkName, Network.networkTimer = awful.widget.watch(
 		widget.align = "center"
 	end)
 Network.network = wibox.widget {
-    {
-        {
-            wibox.widget.textbox("  "),
-            Network.networkName,
-            layout = wibox.layout.align.horizontal
-        },
-        left = 18,
-        right = 24,
-        widget = wibox.container.margin
-    },
-    bg = beautiful.disabled,
-    fg = beautiful.network_fg,
-    shape = powerArrow,
-    widget = wibox.container.background
+	{
+		{
+			{
+				wibox.widget.textbox("  "),
+				Network.networkName,
+				layout = wibox.layout.align.horizontal
+			},
+			left = 18,
+			right = 24,
+			widget = wibox.container.margin
+		},
+		bg = beautiful.highlight,
+		fg = beautiful.network_fg,
+		shape = pill,
+		widget = wibox.container.background
+	},
+	top = 4,
+	bottom = 4,
+	widget = wibox.container.margin
 }
-Network.network:connect_signal("mouse::enter", function (c)
-    c:set_bg(beautiful.lines)
+Network.network.widget:connect_signal("mouse::enter", function (c)
+    c:set_bg(beautiful.bg_alt)
 	Network.networkTimer:emit_signal("timeout")
 end)
-Network.network:connect_signal("mouse::leave", function (c)
-    c:set_bg(beautiful.disabled)
+Network.network.widget:connect_signal("mouse::leave", function (c)
+    c:set_bg(beautiful.highlight)
 end)
-Network.network:connect_signal("button::press", function(c,_,_,button)
+Network.network.widget:connect_signal("button::press", function(c,_,_,button)
 	if button == 1 then
 		awful.util.spawn("iwgtk")
 		Network.networkTimer:emit_signal("timeout")

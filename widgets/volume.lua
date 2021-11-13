@@ -10,7 +10,8 @@ local lain = require("lain")
 local beautiful = require("beautiful")
 
 -- Shapes and sepparators library
-local powerArrow = require("widgets.sepparators").powerArrow
+-- local powerArrow = require("widgets.sepparators").powerArrow
+local pill = require("widgets.shapes").pill
 
 -- Notification library
 -- local menubar = require("menubar")
@@ -37,27 +38,33 @@ Volume.myvolume = lain.widget.pulse({
 
 -- Volume widget
 Volume.volume = wibox.widget {
-    {
-        {
-            Volume.myvolume.widget,
-            layout = wibox.layout.align.horizontal
-        },
-        left = 18,
-        right = 16,
-        widget = wibox.container.margin
-    },
-    bg = beautiful.disabled,
-    fg = beautiful.volume_fg,
-    shape = powerArrow,
-    widget = wibox.container.background
+	{
+		{
+			{
+				Volume.myvolume.widget,
+				layout = wibox.layout.align.horizontal
+			},
+			left = 16,
+			right = 10,
+			widget = wibox.container.margin
+		},
+		bg = beautiful.highlight,
+		fg = beautiful.volume_fg,
+		-- shape = powerArrow,
+		shape = pill,
+		widget = wibox.container.background
+	},
+	top = 4,
+	bottom = 4,
+	widget = wibox.container.margin
 }
-Volume.volume:connect_signal("mouse::enter", function (c)
-    c:set_bg(beautiful.lines)
+Volume.volume.widget:connect_signal("mouse::enter", function (c)
+    c:set_bg(beautiful.bg_alt)
 end)
-Volume.volume:connect_signal("mouse::leave", function (c)
-    c:set_bg(beautiful.disabled)
+Volume.volume.widget:connect_signal("mouse::leave", function (c)
+    c:set_bg(beautiful.highlight)
 end)
-Volume.volume:connect_signal("button::press", function(c,_,_,button)
+Volume.volume.widget:connect_signal("button::press", function(c,_,_,button)
         if button == 1 then awful.util.spawn("pavucontrol")
     end
 end)

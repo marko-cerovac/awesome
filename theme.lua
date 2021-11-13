@@ -26,6 +26,7 @@ theme.lines	    = "#3B3F51"
 
 theme.white         = "#EEFFFF"
 theme.red           = "#F07178"
+theme.orange        = "#F78C6C"
 theme.yellow        = "#FFCB6B"
 theme.green         = "#C3E88D"
 theme.purple        = "#C792EA"
@@ -74,9 +75,11 @@ theme.tasklist_border_focus = theme.accent
 
 -- Widgets colors
 theme.battery_fg = theme.green
-theme.brightness_fg = theme.yellow
+theme.brightness_fg = theme.blue
 theme.volume_fg = theme.purple
 theme.network_fg = theme.red
+theme.keyboard_fg = theme.orange
+theme.clock_fg = theme.yellow
 
 -- Hotkeys popup
 theme.hotkeys_opacity = 1
