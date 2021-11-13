@@ -1,5 +1,5 @@
 -- Standard awesome library
-local gears = require("gears")
+-- local gears = require("gears")
 local awful = require("awful")
 
 -- Widget and layout library
@@ -10,39 +10,29 @@ local beautiful = require("beautiful")
 
 -- OS logo
 local OSlogo = wibox.widget {
-    {
-        {
-            {
-                {
-                    text = "  ",
-                    valign = "center",
-                    align = "center",
-                    font = "SauceCodePro Nerd Font 18",
-                    widget = wibox.widget.textbox,
-                },
-                widget = wibox.container.rotate,
-                direction = "south"
-            },
-            left = 34,
-            right = 36,
-            widget = wibox.container.margin
-        },
-        bg = beautiful.accent,
-        fg = beautiful.bg,
-        shape = gears.shape.rectangular_tag,
-        shape_clip = true,
-        widget = wibox.container.background,
-    },
-    widget = wibox.container.rotate,
-    direction = "south",
+	{
+			{
+				text = "  ",
+				valign = "center",
+				align = "center",
+				font = "SauceCodePro Nerd Font 16",
+				widget = wibox.widget.textbox,
+			},
+		left = 30,
+		right = 10,
+		widget = wibox.container.margin
+	},
+	bg = beautiful.bg,
+	fg = beautiful.accent,
+	widget = wibox.container.background,
 }
-OSlogo.widget:connect_signal("mouse::enter", function (c)
+OSlogo:connect_signal("mouse::enter", function (c)
+    c:set_bg(beautiful.bg)
+    c:set_fg(beautiful.white)
+end)
+OSlogo:connect_signal("mouse::leave", function (c)
     c:set_bg(beautiful.bg)
     c:set_fg(beautiful.accent)
-end)
-OSlogo.widget:connect_signal("mouse::leave", function (c)
-    c:set_bg(beautiful.accent)
-    c:set_fg(beautiful.bg)
 end)
 OSlogo.widget:connect_signal("button::press", function(c,_,_,button)
         if button == 1 then awful.util.spawn("rofi -show drun")

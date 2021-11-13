@@ -54,20 +54,20 @@ theme.border_focus  = theme.accent
 theme.border_marked = theme.red
 
 -- Taglist colors
-theme.taglist_bg_focus = theme.bg_alt
-theme.taglist_bg_empty = theme.bg_alt
-theme.taglist_bg_occupied = theme.bg_alt
-theme.taglist_bg_urgent = theme.bg_alt
+theme.taglist_bg_focus = theme.highlight
+theme.taglist_bg_empty = theme.highlight
+theme.taglist_bg_occupied = theme.highlight
+theme.taglist_bg_urgent = theme.highlight
 
-theme.taglist_fg_focus = theme.accent
-theme.taglist_fg_empty = theme.white
+theme.taglist_fg_focus = theme.white
+theme.taglist_fg_empty = theme.paleblue
 theme.taglist_fg_occupied = theme.disabled
 theme.taglist_fg_urgent = theme.red
 
 -- Tasklist colors
 theme.tasklist_bg_normal = theme.bg
 theme.tasklist_fg_normal = theme.fg
-theme.tasklist_bg_focus = theme.bg
+theme.tasklist_bg_focus = theme.highlight
 theme.tasklist_fg_focus = theme.white
 theme.tasklist_border = theme.active
 theme.tasklist_border_focus = theme.accent
