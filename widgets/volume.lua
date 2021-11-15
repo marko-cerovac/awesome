@@ -1,51 +1,40 @@
-
 -- Standard awesome library
 local awful = require("awful")
 
 -- Widget and layout library
 local wibox = require("wibox")
-local lain = require("lain")
 
 -- Themes library
 local beautiful = require("beautiful")
 
 -- Shapes and sepparators library
--- local powerArrow = require("widgets.sepparators").powerArrow
 local pill = require("widgets.shapes").pill
 
--- Notification library
--- local menubar = require("menubar")
--- local hotkeys_popup = require("awful.hotkeys_popup")
-
--- Markup and separators
-local markup = lain.util.markup
-
--- Widgets
 local Volume = {}
 
--- Volume timer
-Volume.myvolume = lain.widget.pulse({
-    timeout = 20,
-    settings = function ()
-        if volume_now.muted == "yes" then
-            widget:set_markup(markup.font(beautiful.font," Muted"))
-            return
-        else
-            widget:set_markup(markup.font(beautiful.font, " "  .. volume_now.right .. "% "))
-        end
-    end
-})
+Volume.volumeLevel, Volume.volumeTimer = awful.widget.watch(
+	beautiful.util_dir .. "volume.sh",
+	60,
+	function(widget, stdout)
+        widget.align = "center"
+		if stdout:sub(1, 1) == "M" then
+			widget:set_markup(" Muted")
+		else
+			local level = tonumber(stdout)
+			widget:set_markup(" " .. level .. "%")
+		end
+	end
+)
 
 -- Volume widget
 Volume.volume = wibox.widget {
 	{
 		{
 			{
-				Volume.myvolume.widget,
-				layout = wibox.layout.align.horizontal
+				widget = Volume.volumeLevel
 			},
 			left = 16,
-			right = 10,
+			right = 16,
 			widget = wibox.container.margin
 		},
 		bg = beautiful.highlight,

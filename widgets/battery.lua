@@ -22,7 +22,6 @@ Battery.batteryLevel, Battery.batteryTimer = awful.widget.watch(
 	function(widget, stdout)
 		local level = tonumber(stdout:sub(2))
         local state = stdout:sub(1, 1)
-        widget:set_markup(stdout:gsub("\n", ""))
         widget.align = "center"
         if state == "C" then
             widget:set_markup(" " .. level .. "% (Charging)")
@@ -70,6 +69,7 @@ Battery.batteryLevel, Battery.batteryTimer = awful.widget.watch(
 		end
 	end
 )
+
 Battery.battery = wibox.widget {
 	{
 		{

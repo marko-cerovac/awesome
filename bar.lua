@@ -105,14 +105,11 @@ awful.screen.connect_for_each_screen(function(s)
 			spacing = 2,
 			spacing_widget = {
 				{
-					-- forced_width = 2,
-					-- shape = gears.shape.powerline,
 					widget = wibox.widget.separator
 				},
 				valign = "center",
 				halign = "center",
 			},
-			-- layout = wibox.layout.flex.horizontal
 			layout = wibox.layout.fixed.horizontal
 		},
 		 widget_template = {
@@ -138,7 +135,7 @@ awful.screen.connect_for_each_screen(function(s)
 					widget = wibox.container.margin
 				},
 				id     = 'background_role',
-                forced_width = 130,
+                forced_width = 136,
 				widget = wibox.container.background,
 			},
 			top = 4,
@@ -148,7 +145,6 @@ awful.screen.connect_for_each_screen(function(s)
     }
 
     -- Create the wibox
-    -- s.mywibox = awful.wibar({ position = "top", screen = s, bg = beautiful.bg_normal .. "A0" })
     s.mywibox = awful.wibar({
 		position = "top",
 		screen = s,
@@ -159,14 +155,12 @@ awful.screen.connect_for_each_screen(function(s)
     -- Add widgets
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
-        -- layout = wibox.layout.flex.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             spacing = 6,
             widgets.oslogo,
             s.mytaglist,
             s.mylayout,
-            -- mylauncher,
         },
         s.mytasklist, -- Middle widget
         { -- Right widgets
@@ -178,8 +172,7 @@ awful.screen.connect_for_each_screen(function(s)
 			widgets.network.network,
             widgets.keyboard,
             widgets.clock,
-            -- widgets.logout.sleep,
-			widgets.logout.poweroff,
+			widgets.logout,
         },
     }
 end)

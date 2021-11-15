@@ -28,7 +28,8 @@ Brightness.brightness = wibox.widget {
 	{
 		{
 			{
-				wibox.widget.textbox(" "),
+				-- wibox.widget.textbox(" "),
+				wibox.widget.textbox(" "),
 				Brightness.brightnessLevel,
 				layout = wibox.layout.align.horizontal
 			},

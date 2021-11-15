@@ -21,7 +21,7 @@ local keyboardlayout = wibox.widget {
 				awful.widget.keyboardlayout()
 			},
 			left = 20,
-			right = 16,
+			right = 12,
 			widget = wibox.container.margin
 		},
 		fg = beautiful.keyboard_fg,
