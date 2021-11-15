@@ -5,6 +5,8 @@ local gears = require("gears")
 -- Widget and layout library
 local wibox = require("wibox")
 
+local beautiful = require("beautiful")
+
 
 local make_tags = function (s)
 	-- Each screen has its own tag table.

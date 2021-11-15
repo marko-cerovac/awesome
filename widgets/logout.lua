@@ -9,47 +9,11 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 
 -- Shapes and sepparators library
-local pill = require("widgets.shapes").pill
+-- local pill = require("widgets.shapes").pill
 
 -- Widgets
-local Logout = {}
 
-Logout.sleep = wibox.widget {
-    {
-        {
-            text = "  ",
-            valign = "center",
-            align = "center",
-            font = "SauceCodePro Nerd Font 12",
-            widget = wibox.widget.textbox
-        },
-        left = 20,
-        right = 20,
-        widget = wibox.container.margin
-    },
-    bg = beautiful.accent,
-    fg = beautiful.bg,
-    shape = pill,
-    shape_border_width = 1,
-    shape_border_color = beautiful.accent,
-    shape_clip = true,
-    widget = wibox.container.background
-}
-
-Logout.sleep:connect_signal("mouse::enter", function (c)
-    c:set_bg(beautiful.bg)
-    c:set_fg(beautiful.accent)
-end)
-Logout.sleep:connect_signal("mouse::leave", function (c)
-    c:set_bg(beautiful.accent)
-    c:set_fg(beautiful.bg)
-end)
-Logout.sleep:connect_signal("button::press", function(c,_,_,button)
-    if button == 1 then awful.util.spawn(beautiful.util_dir .. [[prompt.sh "Do you want to suspend" "systemctl suspend"]]) end
-end)
-
-
-Logout.poweroff = wibox.widget {
+local poweroff = wibox.widget {
 	{
 		{
 			text = "  ",
@@ -66,14 +30,15 @@ Logout.poweroff = wibox.widget {
 	widget = wibox.container.background
 }
 
-Logout.poweroff:connect_signal("mouse::enter", function (c)
+poweroff:connect_signal("mouse::enter", function (c)
     c:set_fg(beautiful.white)
 end)
-Logout.poweroff:connect_signal("mouse::leave", function (c)
+poweroff:connect_signal("mouse::leave", function (c)
     c:set_fg(beautiful.accent)
 end)
-Logout.poweroff:connect_signal("button::press", function(c,_,_,button)
-    if button == 1 then awful.util.spawn(beautiful.util_dir .. [[prompt.sh "Do you want to shut down" "shutdown now"]]) end
+poweroff:connect_signal("button::press", function(c,_,_,button)
+    -- if button == 1 then awful.util.spawn(beautiful.util_dir .. [[prompt.sh "Do you want to shut down" "shutdown now"]]) end
+    if button == 1 then awful.util.spawn(beautiful.util_dir .. "logout.sh") end
 end)
 
-return Logout
+return poweroff

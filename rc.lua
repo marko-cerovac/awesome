@@ -60,14 +60,14 @@ awful.layout.layouts = {
     awful.layout.suit.fair,
     awful.layout.suit.max,
     awful.layout.suit.corner.nw,
+    awful.layout.suit.tile.bottom,
     awful.layout.suit.floating,
-    awful.layout.suit.spiral,
     awful.layout.suit.magnifier,
-    -- awful.layout.suit.spiral.dwindle,
+    awful.layout.suit.spiral.dwindle,
+    -- awful.layout.suit.spiral,
     -- awful.layout.suit.fair.horizontal,
-    -- awful.layout.suit.tile.left,
-    -- awful.layout.suit.tile.bottom,
     -- awful.layout.suit.tile.top,
+    -- awful.layout.suit.tile.left,
     -- awful.layout.suit.max.fullscreen,
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
@@ -147,3 +147,15 @@ end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+screen.connect_signal("arrange", function (s)
+    local max = s.selected_tag.layout.name == "max"
+    local only_one = #s.tiled_clients == 1 -- use tiled_clients so that other floating windows don't affect the count
+    -- but iterate over clients instead of tiled_clients as tiled_clients doesn't include maximized windows
+    for _, c in pairs(s.clients) do
+        if (max or only_one) and not c.floating or c.maximized then
+            c.border_width = 0
+        else
+            c.border_width = beautiful.border_width
+        end
+    end
+end)

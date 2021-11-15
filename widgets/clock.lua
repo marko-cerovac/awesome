@@ -23,7 +23,7 @@ local textclock = wibox.widget {
 				widget = wibox.layout.fixed.horizontal
 			},
 			left = 20,
-			right = 16,
+			right = 12,
 			widget = wibox.container.margin
 		},
 		fg = beautiful.clock_fg,

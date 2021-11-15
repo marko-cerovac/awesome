@@ -171,9 +171,9 @@ globalkeys = gears.table.join(
     awful.key({ modkey },            "p",     function () awful.util.spawn("pavucontrol") end,
               {description = "Launch Pavucontrol volume control", group = "launcher"}),
 
-    -- Change Wallpaper
+    -- Change wallpaper
     awful.key({ modkey },            "y",     function () awful.util.spawn_with_shell("~/.config/awesome/util/chwall.sh") end,
-              {description = "Change Wallpaper", group = "launcher"}),
+              {description = "Change wallpaper", group = "launcher"}),
 
     -- Change keyboard layout
     awful.key({ modkey },            "0",     function () awful.util.spawn_with_shell("~/.config/awesome/util/kbdswitch.sh") end,
@@ -185,21 +185,21 @@ globalkeys = gears.table.join(
 	-- Mute the volume
 	awful.key({},	  "XF86AudioMute", function ()
 		awful.util.spawn("pactl set-sink-mute 0 toggle")
-        widgets.volume.myvolume.update()
+		widgets.volume.volumeTimer:emit_signal("timeout")
 		end,
 			  {description = "Mute volume", group = "control"}),
 
 	-- Raise the volume
 	awful.key({},	  "XF86AudioRaiseVolume", function()
 		awful.util.spawn("pactl set-sink-volume 0 +10%")
-        widgets.volume.myvolume.update()
+		widgets.volume.volumeTimer:emit_signal("timeout")
 		end,
 			  {description = "Raise volume", group = "control"}),
 
 	-- Lower the volume
 	awful.key({},	  "XF86AudioLowerVolume", function()
 		awful.util.spawn("pactl set-sink-volume 0 -10%")
-        widgets.volume.myvolume.update()
+		widgets.volume.volumeTimer:emit_signal("timeout")
 		end,
 			  {description = "Lower volume", group = "control"}),
 
