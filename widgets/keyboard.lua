@@ -42,7 +42,7 @@ keyboardlayout.widget:connect_signal("mouse::leave", function (c)
 end)
 
 keyboardlayout.widget.widget:connect_signal("button::press", function (c,_,_,button)
-    if button == 1 then awful.util.spawn(beautiful.util_dir .. "kbdswitch.sh") end
+    if button == 1 then awful.util.spawn(util_dir .. "kbdswitch.sh") end
 end)
 
 return keyboardlayout

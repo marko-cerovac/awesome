@@ -13,7 +13,7 @@ local pill = require("widgets.shapes").pill
 local Volume = {}
 
 Volume.volumeLevel, Volume.volumeTimer = awful.widget.watch(
-	beautiful.util_dir .. "volume.sh",
+	util_dir .. "volume.sh",
 	60,
 	function(widget, stdout)
         widget.align = "center"

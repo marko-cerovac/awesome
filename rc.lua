@@ -12,6 +12,8 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 
+util_dir = "/home/marko/.config/awesome/util/"
+
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 -- require("awful.hotkeys_popup.keys")
@@ -45,6 +47,9 @@ end
 -- Themes define colours, icons, font and wallpapers.
 -- beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 beautiful.init("/home/marko/.config/awesome/theme.lua")
+
+-- Autostart script
+awful.spawn.once(util_dir .. "autostart.sh")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"

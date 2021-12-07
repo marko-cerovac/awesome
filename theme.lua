@@ -94,7 +94,6 @@ theme.hotkeys_description_font = "SauceCodePro Nerd Font 10"
 theme.hotkeys_group_margin = 28
 
 -- Add utilities directory
-theme.util_dir = "/home/marko/.config/awesome/util/"
 
 -- There are other variable sets
 -- overriding the default one when

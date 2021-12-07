@@ -37,8 +37,8 @@ poweroff:connect_signal("mouse::leave", function (c)
     c:set_fg(beautiful.accent)
 end)
 poweroff:connect_signal("button::press", function(c,_,_,button)
-    -- if button == 1 then awful.util.spawn(beautiful.util_dir .. [[prompt.sh "Do you want to shut down" "shutdown now"]]) end
-    if button == 1 then awful.util.spawn(beautiful.util_dir .. "logout.sh") end
+    -- if button == 1 then awful.util.spawn(util_dir .. [[prompt.sh "Do you want to shut down" "shutdown now"]]) end
+    if button == 1 then awful.util.spawn(util_dir .. "logout.sh") end
 end)
 
 return poweroff

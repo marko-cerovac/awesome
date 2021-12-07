@@ -16,7 +16,7 @@ local Brightness = {}
 
 -- Brightness timer
 Brightness.brightnessLevel, Brightness.brightnessTimer = awful.widget.watch(
-    beautiful.util_dir .. 'brightness',
+    util_dir .. 'brightness',
     60,
     function(widget, stdout)
         widget:set_markup(stdout:gsub("\n", ""))

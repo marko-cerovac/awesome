@@ -17,7 +17,7 @@ local Battery = {}
  -- The battery program returns the charging state and the battery capacity
  -- ( For example: B10 or C52 ) where B is for battery power and C is for charging
 Battery.batteryLevel, Battery.batteryTimer = awful.widget.watch(
-	beautiful.util_dir .. "battery",
+	util_dir .. "battery",
 	90,
 	function(widget, stdout)
 		local level = tonumber(stdout:sub(2))
