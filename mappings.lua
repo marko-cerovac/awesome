@@ -1,7 +1,7 @@
 -- Standard awesome library
 local gears = require('gears')
 local awful = require('awful')
-local util_dir = require('beautiful').util_dir
+-- local util_dir = require('beautiful').util_dir
 
 -- Popup keys
 local hotkeys_popup = require("awful.hotkeys_popup")
@@ -135,40 +135,41 @@ globalkeys = gears.table.join(
               {description = "open a terminal", group = "launcher"}),
 
 	-- St
-    awful.key({ modkey },            "t",     function () awful.util.spawn("st") end,
+    awful.key({ modkey },            "t",     function () awful.spawn("st") end,
               {description = "Launch st terminal", group = "launcher"}),
 
 	-- NeoVide
-    --[[ awful.key({ modkey },            "v",     function () awful.util.spawn("neovide") end,
+    --[[ awful.key({ modkey },            "v",     function () awful.spawn("neovide") end,
               {description = "Launch NeoVide", group = "launcher"}), ]]
 	-- NeoVim
-    awful.key({ modkey },            "v",     function () awful.util.spawn("alacritty -e nvim") end,
+    awful.key({ modkey },            "v",     function () awful.spawn("alacritty -e nvim") end,
               {description = "Launch NeoVim", group = "launcher"}),
 
-    -- Rofi
-    awful.key({ modkey },            "r",     function () awful.util.spawn("rofi -show drun") end,
-              {description = "Launch Rofi run prompt", group = "launcher"}),
+    -- Dmenu
+    -- awful.key({ modkey },            "r",     function () awful.spawn("rofi -show drun") end,
+    awful.key({ modkey },            "r",     function () awful.spawn("dmenu_run -c -l 10 -p Run:") end,
+              {description = "Launch Dmenu run prompt", group = "launcher"}),
 
     -- Dmenu
-    awful.key({ modkey },            ";",     function () awful.util.spawn("dmenu_run -c -l 10 -p Run:") end,
+    awful.key({ modkey },            ";",     function () awful.spawn("dmenu_run -c -l 10 -p Run:") end,
               {description = "Launch Dmenu run prompt", group = "launcher"}),
 
     -- File manager
-    awful.key({ modkey },            "e",     function () awful.util.spawn("alacritty -e joshuto") end,
+    awful.key({ modkey },            "e",     function () awful.spawn("alacritty -e joshuto") end,
               {description = "Launch Ranger file manager", group = "launcher"}),
 
-    -- Thunar
-    awful.key({ modkey },            "n",     function () awful.util.spawn("thunar") end,
-              {description = "Launch Thunar file manager", group = "launcher"}),
+    -- Pcmanfm
+    awful.key({ modkey },            "n",     function () awful.spawn("pcmanfm") end,
+              {description = "Launch Pcmanfm file manager", group = "launcher"}),
 
     -- Brave
-    awful.key({ modkey },            "b",     function () awful.util.spawn("brave") end,
+    awful.key({ modkey },            "b",     function () awful.spawn("brave") end,
               {description = "Launch Brave browser", group = "launcher"}),
-    awful.key({ modkey },            "i",     function () awful.util.spawn("brave --incognito") end,
+    awful.key({ modkey },            "i",     function () awful.spawn("brave --incognito") end,
               {description = "Launch Brave browser (incognito mode)", group = "launcher"}),
 
     -- Pavucontrol
-    awful.key({ modkey },            "p",     function () awful.util.spawn("pavucontrol") end,
+    awful.key({ modkey },            "p",     function () awful.spawn("pavucontrol") end,
               {description = "Launch Pavucontrol volume control", group = "launcher"}),
 
     -- Change wallpaper
@@ -179,46 +180,50 @@ globalkeys = gears.table.join(
     awful.key({ modkey },            "0",     function () awful.util.spawn_with_shell("~/.config/awesome/util/kbdswitch.sh") end,
               {description = "Change keyboard layout", group = "launcher"}),
 
+	-- Todo list
+    awful.key({ modkey },            "9",     function () awful.spawn(util_dir .. "todo.sh") end,
+              {description = "Open todo list", group = "launcher"}),
+
 
 	-- Control keys
 
 	-- Mute the volume
 	awful.key({},	  "XF86AudioMute", function ()
-		awful.util.spawn("pactl set-sink-mute 0 toggle")
+		awful.spawn("pactl set-sink-mute 0 toggle")
 		widgets.volume.volumeTimer:emit_signal("timeout")
 		end,
 			  {description = "Mute volume", group = "control"}),
 
 	-- Raise the volume
 	awful.key({},	  "XF86AudioRaiseVolume", function()
-		awful.util.spawn("pactl set-sink-volume 0 +10%")
+		awful.spawn("pactl set-sink-volume 0 +10%")
 		widgets.volume.volumeTimer:emit_signal("timeout")
 		end,
 			  {description = "Raise volume", group = "control"}),
 
 	-- Lower the volume
 	awful.key({},	  "XF86AudioLowerVolume", function()
-		awful.util.spawn("pactl set-sink-volume 0 -10%")
+		awful.spawn("pactl set-sink-volume 0 -10%")
 		widgets.volume.volumeTimer:emit_signal("timeout")
 		end,
 			  {description = "Lower volume", group = "control"}),
 
 	-- Mute the microphone
-	awful.key({},	  "XF86AudiMicMute", function ()
-		awful.util.spawn("pactl set-source-mute 0 toggle")
+	awful.key({},	  "XF86AudioMicMute", function ()
+		awful.spawn("pactl set-source-mute 0 toggle")
 		end,
 			  {description = "Mute microphone", group = "control"}),
 
 	-- Increase brightness by 5%
 	awful.key({},	  "XF86MonBrightnessUp", function ()
-		awful.util.spawn("brightnessctl --device='amdgpu_bl0' s +5%")
+		awful.spawn("brightnessctl --device='amdgpu_bl0' s +5%")
 		widgets.brightness.brightnessTimer:emit_signal("timeout")
 		end,
 			  {description = "Increase brightness by 5%", group = "control"}),
 
 	-- Decrease brightness by 5%
 	awful.key({},	  "XF86MonBrightnessDown", function ()
-		awful.util.spawn("brightnessctl --device='amdgpu_bl0' s 5%-")
+		awful.spawn("brightnessctl --device='amdgpu_bl0' s 5%-")
 		widgets.brightness.brightnessTimer:emit_signal("timeout")
 		end,
 			  {description = "Decrease brightness by 5%", group = "control"}),
@@ -230,12 +235,12 @@ globalkeys = gears.table.join(
 			  {description = "Capture screen", group = "control"}),
 
 	-- Lock screen
-	awful.key({},	  "XF86Display", function () awful.util.spawn("slock") end,
+	awful.key({},	  "XF86Display", function () awful.spawn("slock") end,
 			  {description = "Lock screen", group = "control"}),
 
 
     -- Poweroff
-    awful.key({ modkey,         },       "x", function () awful.util.spawn(util_dir .. "logout.sh") end,
+    awful.key({ modkey,         },       "x", function () awful.spawn(util_dir .. "logout.sh") end,
               {description = "Shut down", group = "awesome"})
 )
 
