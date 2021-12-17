@@ -4,6 +4,11 @@
         "awesome",
         "root",
         "client",
-        "screen"
+        "screen",
+        "util_dir",
+        "terminal",
+        "editor",
+        "editor_cmd",
+        "modkey"
     ]
 }

@@ -3,10 +3,10 @@ cc = clang# Compiler
 # Build all
 all: brightness battery
 
-brightness: brightness.c
+brightness: src/brightness.c
 	$(cc) $^ -o $@
 
-battery: battery.c
+battery: src/battery.c
 	$(cc) $^ -o $@
 
 clean:
