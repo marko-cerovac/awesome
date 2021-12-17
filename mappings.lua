@@ -128,7 +128,7 @@ globalkeys = gears.table.join(
 
 	-- Show main menu
     awful.key({ modkey,           }, "w", function () widgets.menu.menu:show() end,
-              {description = "show main menu", grup = "awesome"}),
+              {description = "show main menu", grup = "launcher"}),
 
     -- Terminal
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
@@ -139,15 +139,15 @@ globalkeys = gears.table.join(
               {description = "Launch st terminal", group = "launcher"}),
 
 	-- NeoVide
-    --[[ awful.key({ modkey },            "v",     function () awful.spawn("neovide") end,
-              {description = "Launch NeoVide", group = "launcher"}), ]]
+    awful.key({ modkey },            "v",     function () awful.spawn("neovide") end,
+              {description = "Launch NeoVide", group = "launcher"}),
 	-- NeoVim
-    awful.key({ modkey },            "v",     function () awful.spawn("alacritty -e nvim") end,
-              {description = "Launch NeoVim", group = "launcher"}),
+    --[[ awful.key({ modkey },            "v",     function () awful.spawn("alacritty -e nvim") end,
+              {description = "Launch NeoVim", group = "launcher"}), ]]
 
     -- Dmenu
     -- awful.key({ modkey },            "r",     function () awful.spawn("rofi -show drun") end,
-    awful.key({ modkey },            "r",     function () awful.spawn("dmenu_run -c -l 10 -p Run:") end,
+    awful.key({ modkey },            "r",     function () awful.spawn("j4-dmenu-desktop --dmenu='dmenu -c -l 10 -p Run:'") end,
               {description = "Launch Dmenu run prompt", group = "launcher"}),
 
     -- Dmenu
@@ -155,7 +155,7 @@ globalkeys = gears.table.join(
               {description = "Launch Dmenu run prompt", group = "launcher"}),
 
     -- File manager
-    awful.key({ modkey },            "e",     function () awful.spawn("alacritty -e joshuto") end,
+    awful.key({ modkey },            "e",     function () awful.spawn("alacritty -e ranger") end,
               {description = "Launch Ranger file manager", group = "launcher"}),
 
     -- Pcmanfm
@@ -235,7 +235,7 @@ globalkeys = gears.table.join(
 			  {description = "Capture screen", group = "control"}),
 
 	-- Lock screen
-	awful.key({},	  "XF86Display", function () awful.spawn("slock") end,
+	awful.key({},	  "XF86Display", function () awful.spawn("dm-tool lock") end,
 			  {description = "Lock screen", group = "control"}),
 
 
