@@ -9,6 +9,7 @@
         "terminal",
         "editor",
         "editor_cmd",
-        "modkey"
+        "modkey",
+        "clientkeys"
     ]
 }

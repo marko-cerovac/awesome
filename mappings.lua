@@ -35,6 +35,14 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, "s", hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
 
+     -- Toggle bar
+    awful.key({ modkey, "Shift" }, "b", function ()
+		for s in screen do
+			s.mywibox.visible = not s.mywibox.visible
+		end
+	end,
+		{description = "toggle bar", group = "awesome"}),
+
     -- Window navigation and resizing
 
     -- Focus on next window
@@ -138,9 +146,13 @@ globalkeys = gears.table.join(
     awful.key({ modkey },            "t",     function () awful.spawn("st") end,
               {description = "Launch st terminal", group = "launcher"}),
 
+	-- VS Codium
+    awful.key({ modkey },            "c",     function () awful.spawn("codium") end,
+              {description = "Launch VS Codium", group = "launcher"}),
+
 	-- NeoVide
-    awful.key({ modkey },            "v",     function () awful.spawn("neovide") end,
-              {description = "Launch NeoVide", group = "launcher"}),
+    --[[ awful.key({ modkey },            "v",     function () awful.spawn("neovide") end,
+              {description = "Launch NeoVide", group = "launcher"}), ]]
 	-- NeoVim
     --[[ awful.key({ modkey },            "v",     function () awful.spawn("alacritty -e nvim") end,
               {description = "Launch NeoVim", group = "launcher"}), ]]
