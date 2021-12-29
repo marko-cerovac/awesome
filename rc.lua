@@ -121,7 +121,7 @@ awful.rules.rules = {
           -- "Pcmanfm",
 		  -- "Thunar",
           -- "veromix",
-          "xtightvncviewer"
+          -- "xtightvncviewer"
         },
         name = {
           "Event Tester",  -- xev.
