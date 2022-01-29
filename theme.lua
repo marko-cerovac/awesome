@@ -123,7 +123,7 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 -- notification_[width|height|margin]
 -- notification_[border_color|border_width|shape|opacity]
 theme.notification_font = "SauceCodePro Nerd Font 12"
-theme.notification_bg = theme.bg_alt .. "C0"
+theme.notification_bg = theme.bg
 theme.notification_fg = theme.fg
 -- theme.notification_border_color = theme.accent
 theme.notification_border_width = 0

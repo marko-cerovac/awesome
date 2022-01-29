@@ -5,13 +5,15 @@ local gears = require("gears")
 -- Widget and layout library
 local wibox = require("wibox")
 
-local beautiful = require("beautiful")
+-- local beautiful = require("beautiful")
 
 
 local make_tags = function (s)
 	-- Each screen has its own tag table.
-	local names = { "  ", "  ", " 爵 ", "  ", " 拾 " }
+	local names = { "  ", "  ", "  ", "  ", " 拾 ", "  ", " 漣 " }
 	local layouts = {
+		awful.layout.layouts[1],
+		awful.layout.layouts[1],
 		awful.layout.layouts[1],
 		awful.layout.layouts[1],
 		awful.layout.layouts[1],
@@ -46,14 +48,14 @@ local list = awful.widget.taglist {
 				layout = wibox.layout.fixed.horizontal,
 			},
 			left = 16,
-				right = 16,
-				widget = wibox.container.margin
-			},
-			id = 'background_role',
-			widget = wibox.container.background,
+			right = 16,
+			widget = wibox.container.margin
 		},
-		buttons = taglist_buttons
-	}
+		id = 'background_role',
+		widget = wibox.container.background,
+	},
+	buttons = taglist_buttons
+}
 
 	return list
 end
