@@ -185,7 +185,8 @@ globalkeys = gears.table.join(
               {description = "Launch Pavucontrol volume control", group = "launcher"}),
 
     -- Change wallpaper
-    awful.key({ modkey },            "y",     function () awful.util.spawn_with_shell("~/.config/awesome/util/chwall.sh") end,
+    -- awful.key({ modkey },            "y",     function () awful.util.spawn_with_shell("~/.config/awesome/util/chwall.sh") end,
+    awful.key({ modkey },            "y",     function () awful.util.spawn_with_shell("~/.config/awesome/util/wallpaper-picker.sh") end,
               {description = "Change wallpaper", group = "launcher"}),
 
     -- Change keyboard layout
