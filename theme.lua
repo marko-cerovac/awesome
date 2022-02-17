@@ -20,7 +20,6 @@ theme.bg_alt	    = "#090B10"
 theme.fg	    = "#A6ACCD"
 theme.active        = "#1A1C25"
 theme.highlight     = "#1F2233"
--- theme.text          = "#717CB4"
 theme.disabled	    = "#464B5D"
 -- theme.lines	    = "#3B3F51"
 
@@ -50,7 +49,7 @@ theme.useless_gap   = dpi(6)
 theme.border_width  = dpi(1)
 -- theme.border_normal = theme.bg
 -- theme.border_focus  = theme.paleblue
-theme.border_normal = theme.disabled
+theme.border_normal = theme.bg
 theme.border_focus  = theme.accent
 theme.border_marked = theme.red
 
@@ -107,6 +106,10 @@ theme.hotkeys_group_margin = 28
 -- hotkeys_[bg|fg|border_width|border_color|shape|opacity|modifiers_fg|label_bg|label_fg|group_margin|font|description_font]
 -- Example:
 --theme.taglist_bg_focus = "#ff0000"
+theme.titlebar_bg_normal = theme.bg
+theme.titlebar_bg_focus = theme.bg
+theme.titlebar_fg_normal = theme.disabled
+theme.titlebar_fg_focus = theme.fg
 
 -- Generate taglist squares:
 local taglist_square_size = dpi(4)

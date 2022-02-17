@@ -6,6 +6,6 @@
 # CHOICE=$(find $HOME/Pictures/Wallpapers -type f | sed 's/\/home\/marko\/Pictures\/Wallpapers\///' | dmenu -b -l 20 -p "Select Wallpaper")
 CHOICE=$(sxiv -t -r -o $HOME/Pictures/Wallpapers)
 
-cp $CHOICE "$HOME/.config/awesome/wallpaper.jpg"
+cp $CHOICE "$HOME/.config/awesome/util/wallpaper.jpg"
 
-awesome-client "require('gears.wallpaper').maximized('/home/marko/.config/awesome/wallpaper.jpg',s,true)"
+awesome-client "require('gears.wallpaper').maximized('/home/marko/.config/awesome/util/wallpaper.jpg',s,true)"

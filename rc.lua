@@ -87,6 +87,9 @@ require('bar')
 require('mappings')
 root.keys(globalkeys)
 
+-- Load titlebars
+-- require("titlebar")
+
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
     -- All clients will match this rule.
@@ -132,6 +135,14 @@ awful.rules.rules = {
           "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
         }
       }, properties = { floating = true }},
+
+	-- { rule_any = {
+	-- 	type = {
+	-- 		"normal",
+	-- 		"dialog"
+	-- 	}
+	-- 	}, properties = { titlebars_enabled = true }
+	-- },
 }
 
 -- Signals
@@ -148,6 +159,10 @@ client.connect_signal("manage", function (c)
         -- Prevent clients from being unreachable after screen count changes.
         awful.placement.no_offscreen(c)
     end
+
+	c.shape = function(cr,w,h)
+        require("gears").shape.rounded_rect(cr,w,h,5)
+	end
 end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
