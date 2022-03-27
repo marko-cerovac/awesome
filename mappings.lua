@@ -1,6 +1,7 @@
 -- Standard awesome library
 local gears = require('gears')
 local awful = require('awful')
+local naughty = require("naughty")
 -- local util_dir = require('beautiful').util_dir
 
 -- Popup keys
@@ -151,11 +152,11 @@ globalkeys = gears.table.join(
               {description = "Launch VS Codium", group = "launcher"}),
 
 	-- NeoVide
-    --[[ awful.key({ modkey },            "v",     function () awful.spawn("neovide") end,
-              {description = "Launch NeoVide", group = "launcher"}), ]]
+    awful.key({ modkey },            "v",     function () awful.spawn("neovide --multigrid") end,
+              {description = "Launch NeoVide", group = "launcher"}),
 	-- NeoVim
-    --[[ awful.key({ modkey },            "v",     function () awful.spawn("alacritty -e nvim") end,
-              {description = "Launch NeoVim", group = "launcher"}), ]]
+    -- awful.key({ modkey },            "v",     function () awful.spawn("alacritty -e nvim") end,
+    --           {description = "Launch NeoVim", group = "launcher"}),
 
     -- Dmenu
     -- awful.key({ modkey },            "r",     function () awful.spawn("rofi -show drun") end,
@@ -170,8 +171,8 @@ globalkeys = gears.table.join(
     awful.key({ modkey },            "e",     function () awful.spawn("alacritty -e ranger") end,
               {description = "Launch Ranger file manager", group = "launcher"}),
 
-    -- Pcmanfm
-    awful.key({ modkey },            "n",     function () awful.spawn("pcmanfm") end,
+    -- Thunar
+    awful.key({ modkey },            "n",     function () awful.spawn("thunar") end,
               {description = "Launch Pcmanfm file manager", group = "launcher"}),
 
     -- Brave
@@ -229,14 +230,14 @@ globalkeys = gears.table.join(
 
 	-- Increase brightness by 5%
 	awful.key({},	  "XF86MonBrightnessUp", function ()
-		awful.spawn("brightnessctl --device='amdgpu_bl0' s +5%")
+		awful.spawn("brightnessctl -e --device='amdgpu_bl0' s +5%")
 		widgets.brightness.brightnessTimer:emit_signal("timeout")
 		end,
 			  {description = "Increase brightness by 5%", group = "control"}),
 
 	-- Decrease brightness by 5%
 	awful.key({},	  "XF86MonBrightnessDown", function ()
-		awful.spawn("brightnessctl --device='amdgpu_bl0' s 5%-")
+		awful.spawn("brightnessctl -e --device='amdgpu_bl0' s 5%-")
 		widgets.brightness.brightnessTimer:emit_signal("timeout")
 		end,
 			  {description = "Decrease brightness by 5%", group = "control"}),

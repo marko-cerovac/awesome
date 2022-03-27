@@ -160,9 +160,10 @@ client.connect_signal("manage", function (c)
         awful.placement.no_offscreen(c)
     end
 
-	c.shape = function(cr,w,h)
-        require("gears").shape.rounded_rect(cr,w,h,5)
-	end
+	-- Rounded corners
+	-- c.shape = function(cr,w,h)
+ 	-- 	require("gears").shape.rounded_rect(cr,w,h,5)
+	-- end
 end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
