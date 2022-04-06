@@ -1,13 +1,14 @@
-cc = clang# Compiler
+#C Compiler
+CC=clang
 
 # Build all
 all: brightness battery
 
 brightness: src/brightness.c
-	$(cc) $^ -o $@
+	$(CC) $^ -o $@
 
 battery: src/battery.c
-	$(cc) $^ -o $@
+	$(CC) $^ -o $@
 
 clean:
 	rm -rf battery brightness

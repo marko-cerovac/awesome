@@ -23,7 +23,7 @@ int main (void)
     else return 1;
     if ((fp = fopen(batFile, "r")) != NULL)
     {
-        fgets(capacity + 1, 3, fp);
+        fgets(capacity + 1, 4, fp);
 		if (capacity[3] == '\n')
 			capacity[3] = 0;
         printf("%s\n", capacity);
