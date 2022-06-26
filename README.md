@@ -1,5 +1,5 @@
 # awesome
-:ocean: My awesome-wm config
+:ocean: Awesome-wm config
 
 ![2022-02-17-21:02:30-screenshot](https://user-images.githubusercontent.com/76592799/154563128-3e33f357-9073-49c1-93d2-37e069708103.png)
 
