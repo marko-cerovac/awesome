@@ -36,7 +36,7 @@ Network.network = wibox.widget {
 			right = 24,
 			widget = wibox.container.margin
 		},
-		bg = beautiful.highlight,
+		bg = beautiful.bg,
 		fg = beautiful.network_fg,
 		shape = pill,
 		widget = wibox.container.background
@@ -46,11 +46,11 @@ Network.network = wibox.widget {
 	widget = wibox.container.margin
 }
 Network.network.widget:connect_signal("mouse::enter", function (c)
-    c:set_bg(beautiful.bg_alt)
+    c:set_bg(beautiful.highlight)
 	Network.networkTimer:emit_signal("timeout")
 end)
 Network.network.widget:connect_signal("mouse::leave", function (c)
-    c:set_bg(beautiful.highlight)
+    c:set_bg(beautiful.bg)
 end)
 Network.network.widget:connect_signal("button::press", function(c,_,_,button)
 	if button == 1 then

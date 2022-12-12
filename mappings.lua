@@ -152,14 +152,17 @@ globalkeys = gears.table.join(
               {description = "Launch VS Codium", group = "launcher"}),
 
 	-- NeoVide
-    awful.key({ modkey },            "v",     function () awful.spawn("neovide --multigrid") end,
+    awful.key({ modkey },            "v",     function () awful.spawn("neovide") end,
               {description = "Launch NeoVide", group = "launcher"}),
 	-- NeoVim
     -- awful.key({ modkey },            "v",     function () awful.spawn("alacritty -e nvim") end,
     --           {description = "Launch NeoVim", group = "launcher"}),
 
     -- Dmenu
-    -- awful.key({ modkey },            "r",     function () awful.spawn("rofi -show drun") end,
+    --[[ awful.key({ modkey },            "r",     function () awful.spawn("rofi -show drun", {
+		placement = awful.placement.top_left,
+		floating = true
+	}) end, ]]
     awful.key({ modkey },            "r",     function () awful.spawn("j4-dmenu-desktop --dmenu='dmenu -c -l 10 -p Run:'") end,
               {description = "Launch Dmenu run prompt", group = "launcher"}),
 
@@ -173,7 +176,7 @@ globalkeys = gears.table.join(
 
     -- Thunar
     awful.key({ modkey },            "n",     function () awful.spawn("thunar") end,
-              {description = "Launch Pcmanfm file manager", group = "launcher"}),
+              {description = "Launch Thunar file manager", group = "launcher"}),
 
     -- Brave
     awful.key({ modkey },            "b",     function () awful.spawn("brave") end,
@@ -198,6 +201,16 @@ globalkeys = gears.table.join(
     awful.key({ modkey },            "9",     function () awful.spawn(util_dir .. "todo.sh") end,
               {description = "Open todo list", group = "launcher"}),
 
+    --  Enable bluetooth
+    awful.key({ modkey, "Control" }, "b", function ()
+        awful.spawn("alacritty -e bluetooth on")
+        awful.spawn("alacritty -e bluetoothctl")
+    end,
+              {description = "Turn on bluetooth", group = "control"}),
+
+    -- Set keyboard delay and repeat rate
+    awful.key({ modkey, "Shift"   }, "x", function () awful.spawn("alacritty -e xset r rate 150 30") end,
+        {description = "Set keyboard speed", group = "control"}),
 
 	-- Control keys
 
@@ -249,7 +262,8 @@ globalkeys = gears.table.join(
 			  {description = "Capture screen", group = "control"}),
 
 	-- Lock screen
-	awful.key({},	  "XF86Display", function () awful.spawn("dm-tool lock") end,
+	-- awful.key({},	  "XF86Display", function () awful.spawn("dm-tool lock") end,
+	awful.key({},	  "XF86Display", function () awful.spawn("slock") end,
 			  {description = "Lock screen", group = "control"}),
 
 
@@ -298,11 +312,11 @@ clientkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Increase window gap
-    awful.key({ modkey,           }, "]", function () awful.tag.incgap(2)                end,
+    awful.key({ modkey,           }, "[", function () awful.tag.incgap(2)                end,
               {description = "increase window gap", group = "layout"}),
 
     -- Decrease window gap
-    awful.key({ modkey,           }, "[", function () awful.tag.incgap(-2)                end,
+    awful.key({ modkey,           }, "]", function () awful.tag.incgap(-2)                end,
               {description = "decrease window gap", group = "layout"})
 )
 

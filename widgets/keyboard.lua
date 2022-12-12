@@ -25,7 +25,7 @@ local keyboardlayout = wibox.widget {
 			widget = wibox.container.margin
 		},
 		fg = beautiful.keyboard_fg,
-		bg = beautiful.highlight,
+		bg = beautiful.bg,
 		shape = pill,
 		widget = wibox.container.background
 	},
@@ -35,10 +35,10 @@ local keyboardlayout = wibox.widget {
 }
 
 keyboardlayout.widget:connect_signal("mouse::enter", function (c)
-	c:set_bg(beautiful.bg_alt)
+	c:set_bg(beautiful.highlight)
 end)
 keyboardlayout.widget:connect_signal("mouse::leave", function (c)
-	c:set_bg(beautiful.highlight)
+	c:set_bg(beautiful.bg)
 end)
 
 keyboardlayout.widget.widget:connect_signal("button::press", function (c,_,_,button)

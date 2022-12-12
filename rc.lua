@@ -112,9 +112,11 @@ awful.rules.rules = {
         },
         class = {
           "Arandr",
+		  "iwgtk",
           -- "Blueman-manager",
           -- "Gpick",
-          "Galculator",
+          -- "Galculator",
+		  "gnome-calculator",
 		  "Iwgtk",
           -- "Kruler",
           -- "MessageWin",  -- kalarm.
@@ -151,7 +153,7 @@ awful.rules.rules = {
 client.connect_signal("manage", function (c)
     -- Set the windows at the slave,
     -- i.e. put it at the end of others instead of setting it master.
-    -- if not awesome.startup then awful.client.setslave(c) end
+    if not awesome.startup then awful.client.setslave(c) end
 
     if awesome.startup
       and not c.size_hints.user_position
@@ -161,9 +163,9 @@ client.connect_signal("manage", function (c)
     end
 
 	-- Rounded corners
-	-- c.shape = function(cr,w,h)
- 	-- 	require("gears").shape.rounded_rect(cr,w,h,5)
-	-- end
+	--[[ c.shape = function(cr,w,h)
+ 		require("gears").shape.rounded_rect(cr,w,h,10)
+	end ]]
 end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)

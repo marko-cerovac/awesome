@@ -37,7 +37,7 @@ Brightness.brightness = wibox.widget {
 			right = 16,
 			widget = wibox.container.margin
 		},
-		bg = beautiful.highlight,
+		bg = beautiful.bg,
 		fg = beautiful.brightness_fg,
 		shape = pill,
 		widget = wibox.container.background
@@ -48,10 +48,10 @@ Brightness.brightness = wibox.widget {
 }
 
 Brightness.brightness.widget:connect_signal("mouse::enter", function (c)
-    c:set_bg(beautiful.bg_alt)
+    c:set_bg(beautiful.highlight)
 end)
 Brightness.brightness.widget:connect_signal("mouse::leave", function (c)
-    c:set_bg(beautiful.highlight)
+    c:set_bg(beautiful.bg)
 end)
 Brightness.brightness.widget:connect_signal("button::press", function(c,_,_,button)
         if button == 1 then

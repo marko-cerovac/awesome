@@ -14,24 +14,12 @@ local theme = {}
 
 theme.font          = "SauceCodePro Nerd Font 10"
 
--- Material Deep Ocean color theme
-theme.bg	    = "#0F111A"
-theme.bg_alt	    = "#090B10"
-theme.fg	    = "#A6ACCD"
-theme.active        = "#1A1C25"
-theme.highlight     = "#1F2233"
-theme.disabled	    = "#464B5D"
--- theme.lines	    = "#3B3F51"
+local colorscheme = require("colorthemes.material-deep-ocean")
+-- local colorscheme = require("colorthemes.material-oceanic")
 
-theme.white         = "#EEFFFF"
-theme.red           = "#F07178"
-theme.orange        = "#F78C6C"
-theme.yellow        = "#FFCB6B"
-theme.green         = "#C3E88D"
-theme.purple        = "#C792EA"
-theme.blue          = "#82AAFF"
-theme.paleblue      = "#B0C9FF"
-theme.accent        = "#84FFFF"
+for key, value in pairs(colorscheme) do
+    theme[key] = value
+end
 
 theme.bg_normal     = theme.highlight
 theme.bg_focus      = theme.bg
@@ -54,21 +42,21 @@ theme.border_focus  = theme.accent
 theme.border_marked = theme.red
 
 -- Taglist colors
-theme.taglist_bg_focus = theme.highlight
-theme.taglist_bg_empty = theme.highlight
-theme.taglist_bg_occupied = theme.highlight
-theme.taglist_bg_urgent = theme.highlight
+theme.taglist_bg_focus = theme.bg
+theme.taglist_bg_empty = theme.bg
+theme.taglist_bg_occupied = theme.bg
+theme.taglist_bg_urgent = theme.bg
 
 theme.taglist_fg_focus = theme.white
-theme.taglist_fg_empty = theme.paleblue
-theme.taglist_fg_occupied = theme.disabled
+theme.taglist_fg_empty = theme.disabled
+theme.taglist_fg_occupied = theme.paleblue
 theme.taglist_fg_urgent = theme.red
 
 -- Tasklist colors
 theme.tasklist_bg_normal = theme.bg
-theme.tasklist_fg_normal = theme.fg
-theme.tasklist_bg_focus = theme.highlight
-theme.tasklist_fg_focus = theme.white
+theme.tasklist_fg_normal = theme.disabled
+theme.tasklist_bg_focus = theme.bg
+theme.tasklist_fg_focus = theme.fg
 theme.tasklist_border = theme.active
 theme.tasklist_border_focus = theme.accent
 

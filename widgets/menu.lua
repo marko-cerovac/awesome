@@ -32,7 +32,7 @@ local control = {
 Menu.menu = awful.menu({ items = { { " awesome", awesomemenu, beautiful.awesome_icon },
                                     { "漣 control settings", control },
                                     { " open terminal", terminal },
-                                    { " open file explorer", "pcmanfm" },
+                                    { " open file explorer", "thunar" },
                                     { " open run prompt", "dmenu_run -l 10 -c" },
                                     { " open visual editor", "neovide" },
                                     { " open office suite", "libreoffice" },

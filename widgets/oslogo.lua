@@ -22,17 +22,15 @@ local OSlogo = wibox.widget {
 		right = 10,
 		widget = wibox.container.margin
 	},
-	bg = beautiful.bg,
+	bg = beautiful.bg_alt,
 	fg = beautiful.accent,
 	widget = wibox.container.background,
 }
 
 OSlogo:connect_signal("mouse::enter", function (c)
-    c:set_bg(beautiful.bg)
     c:set_fg(beautiful.white)
 end)
 OSlogo:connect_signal("mouse::leave", function (c)
-    c:set_bg(beautiful.bg)
     c:set_fg(beautiful.accent)
 end)
 OSlogo.widget:connect_signal("button::press", function(c,_,_,button)

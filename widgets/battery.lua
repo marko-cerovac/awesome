@@ -80,7 +80,7 @@ Battery.battery = wibox.widget {
 			right = 12,
 			widget = wibox.container.margin
 		},
-		bg = beautiful.highlight,
+		bg = beautiful.bg,
 		fg = beautiful.battery_fg,
 		shape = pill,
 		widget = wibox.container.background
@@ -90,17 +90,17 @@ Battery.battery = wibox.widget {
 	widget = wibox.container.margin
 }
 Battery.battery.widget:connect_signal("mouse::enter", function (c)
-    c:set_bg(beautiful.bg_alt)
+    c:set_bg(beautiful.highlight)
 	Battery.batteryTimer:emit_signal("timeout")
 end)
 Battery.battery.widget:connect_signal("mouse::leave", function (c)
-	c:set_bg(beautiful.highlight)
+	c:set_bg(beautiful.bg)
 end)
-Battery.battery.widget:connect_signal("button::press", function(c,_,_,button)
+--[[ Battery.battery.widget:connect_signal("button::press", function(c,_,_,button)
 	if button == 1 then
 		awful.util.spawn("tlpui")
         Battery.batteryTimer:emit_signal("timeout")
     end
-end)
+end) ]]
 
 return Battery

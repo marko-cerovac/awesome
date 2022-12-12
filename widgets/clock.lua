@@ -27,7 +27,7 @@ local textclock = wibox.widget {
 			widget = wibox.container.margin
 		},
 		fg = beautiful.clock_fg,
-		bg = beautiful.highlight,
+		bg = beautiful.bg,
 		shape = pill,
 		widget = wibox.container.background
 	},
@@ -40,11 +40,11 @@ local textclock = wibox.widget {
 -- clockTooltip:add_to_object(textclock)
 
 textclock.widget:connect_signal("mouse::enter", function (c)
-	c:set_bg(beautiful.bg_alt)
+	c:set_bg(beautiful.highlight)
     -- clockTooltip.text = os.date("Today is %A %B %d %Y\nThe time is %T")
 end)
 textclock.widget:connect_signal("mouse::leave", function (c)
-	c:set_bg(beautiful.highlight)
+	c:set_bg(beautiful.bg)
 end)
 
 return textclock

@@ -37,7 +37,7 @@ Volume.volume = wibox.widget {
 			right = 16,
 			widget = wibox.container.margin
 		},
-		bg = beautiful.highlight,
+		bg = beautiful.bg,
 		fg = beautiful.volume_fg,
 		-- shape = powerArrow,
 		shape = pill,
@@ -48,10 +48,10 @@ Volume.volume = wibox.widget {
 	widget = wibox.container.margin
 }
 Volume.volume.widget:connect_signal("mouse::enter", function (c)
-    c:set_bg(beautiful.bg_alt)
+    c:set_bg(beautiful.highlight)
 end)
 Volume.volume.widget:connect_signal("mouse::leave", function (c)
-    c:set_bg(beautiful.highlight)
+    c:set_bg(beautiful.bg)
 end)
 Volume.volume.widget:connect_signal("button::press", function(c,_,_,button)
         if button == 1 then awful.util.spawn("pavucontrol")

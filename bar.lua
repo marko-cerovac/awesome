@@ -60,7 +60,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mylayout = wibox.container.margin(
 		wibox.container.background(
 			wibox.container.margin( s.mylayoutbox, 26, 26),
-			beautiful.highlight,
+			beautiful.bg,
 			widgets.shapes.pill
 		),
 		8, 8, 4, 4
@@ -148,8 +148,10 @@ awful.screen.connect_for_each_screen(function(s)
     s.mywibox = awful.wibar({
 		position = "top",
 		screen = s,
-		bg = beautiful.bg,
-		height = 32
+		bg = beautiful.bg_alt,
+		height = 34,
+		-- shape = widgets.shapes.pill,
+		-- border_width = 4,
 	})
 
     -- Add widgets
