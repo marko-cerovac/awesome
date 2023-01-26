@@ -48,7 +48,7 @@ Brightness.brightness = wibox.widget {
 }
 
 Brightness.brightness.widget:connect_signal("mouse::enter", function (c)
-    c:set_bg(beautiful.highlight)
+    c:set_bg(beautiful.bg_light)
 end)
 Brightness.brightness.widget:connect_signal("mouse::leave", function (c)
     c:set_bg(beautiful.bg)

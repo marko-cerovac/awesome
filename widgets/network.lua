@@ -46,7 +46,7 @@ Network.network = wibox.widget {
 	widget = wibox.container.margin
 }
 Network.network.widget:connect_signal("mouse::enter", function (c)
-    c:set_bg(beautiful.highlight)
+    c:set_bg(beautiful.bg_light)
 	Network.networkTimer:emit_signal("timeout")
 end)
 Network.network.widget:connect_signal("mouse::leave", function (c)

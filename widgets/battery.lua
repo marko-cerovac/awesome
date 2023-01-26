@@ -24,13 +24,14 @@ Battery.batteryLevel, Battery.batteryTimer = awful.widget.watch(
         local state = stdout:sub(1, 1)
         widget.align = "center"
         if state == "C" then
-            widget:set_markup(" " .. level .. "% (Charging)")
+            -- widget:set_markup(" " .. level .. "% (Charging)")
+            widget:set_markup("󰚥 " .. level .. "%")
+            -- widget:set_markup("󰠠 " .. level .. "%")
 			if level == 80 then
 				naughty.notify({
 					title = " Battery charged 80%",
 					text = "Disconnect the charger",
 					timeout = 10,
-					bg = beautiful.notification_bg,
 					fg = beautiful.green,
 				})
 			end
@@ -40,7 +41,6 @@ Battery.batteryLevel, Battery.batteryTimer = awful.widget.watch(
 				title = " Battery critical",
 				text = "Battery level critically low: " .. level .. "%",
 				timeout = 5,
-				bg = beautiful.notification_bg,
 				fg = beautiful.red,
                 border_color = beautiful.red,
 			})
@@ -90,7 +90,7 @@ Battery.battery = wibox.widget {
 	widget = wibox.container.margin
 }
 Battery.battery.widget:connect_signal("mouse::enter", function (c)
-    c:set_bg(beautiful.highlight)
+    c:set_bg(beautiful.bg_light)
 	Battery.batteryTimer:emit_signal("timeout")
 end)
 Battery.battery.widget:connect_signal("mouse::leave", function (c)

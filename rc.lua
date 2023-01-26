@@ -3,8 +3,8 @@
 pcall(require, "luarocks.loader")
 
 -- Standard awesome library
-local awful = require("awful")
 require("awful.autofocus")
+local awful = require("awful")
 
 -- Theme handling library
 local beautiful = require("beautiful")
@@ -53,11 +53,8 @@ awful.spawn.once(util_dir .. "autostart.sh")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
-editor = os.getenv("EDITOR") or "nano"
+editor = os.getenv("EDITOR") or "vi"
 editor_cmd = terminal .. " -e " .. editor
-
--- Default modkey
-modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
@@ -87,9 +84,6 @@ require('bar')
 require('mappings')
 root.keys(globalkeys)
 
--- Load titlebars
--- require("titlebar")
-
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
     -- All clients will match this rule.
@@ -101,7 +95,7 @@ awful.rules.rules = {
                      keys = clientkeys,
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,
-                     placement = awful.placement.no_overlap+awful.placement.no_offscreen }
+                     placement = awful.placement.no_overlap+awful.placement.no_offscreen },
     },
     -- Floating clients.
     { rule_any = {
@@ -163,17 +157,20 @@ client.connect_signal("manage", function (c)
     end
 
 	-- Rounded corners
-	--[[ c.shape = function(cr,w,h)
+	c.shape = function(cr,w,h)
  		require("gears").shape.rounded_rect(cr,w,h,10)
-	end ]]
+	end
 end)
 
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
-screen.connect_signal("arrange", function (s)
+client.connect_signal("focus", function(c)
+    c.border_color = beautiful.border_focus
+end)
+client.connect_signal("unfocus", function(c)
+    c.border_color = beautiful.border_normal
+end)
+--[[ screen.connect_signal("arrange", function (s)
     local max = s.selected_tag.layout.name == "max"
-    local only_one = #s.tiled_clients == 1 -- use tiled_clients so that other floating windows don't affect the count
-    -- but iterate over clients instead of tiled_clients as tiled_clients doesn't include maximized windows
+    local only_one = #s.tiled_clients == 1
     for _, c in pairs(s.clients) do
         if (max or only_one) and not c.floating or c.maximized then
             c.border_width = 0
@@ -181,4 +178,4 @@ screen.connect_signal("arrange", function (s)
             c.border_width = beautiful.border_width
         end
     end
-end)
+end) ]]

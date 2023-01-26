@@ -1,8 +1,10 @@
 -- Standard awesome library
 local gears = require('gears')
 local awful = require('awful')
-local naughty = require("naughty")
+-- local naughty = require("naughty")
 -- local util_dir = require('beautiful').util_dir
+
+modkey = "Mod4"
 
 -- Popup keys
 local hotkeys_popup = require("awful.hotkeys_popup")
@@ -209,7 +211,7 @@ globalkeys = gears.table.join(
               {description = "Turn on bluetooth", group = "control"}),
 
     -- Set keyboard delay and repeat rate
-    awful.key({ modkey, "Shift"   }, "x", function () awful.spawn("alacritty -e xset r rate 150 30") end,
+    awful.key({ modkey, "Shift"   }, "x", function () awful.spawn("xset r rate 150 30") end,
         {description = "Set keyboard speed", group = "control"}),
 
 	-- Control keys
@@ -266,7 +268,6 @@ globalkeys = gears.table.join(
 	awful.key({},	  "XF86Display", function () awful.spawn("slock") end,
 			  {description = "Lock screen", group = "control"}),
 
-
     -- Poweroff
     awful.key({ modkey,         },       "x", function () awful.spawn(util_dir .. "logout.sh") end,
               {description = "Shut down", group = "awesome"})
@@ -307,9 +308,14 @@ clientkeys = gears.table.join(
               {description = "toggle keep on top", group = "client"}),
 
 	-- Restore minimized client
-    awful.key({ modkey, "Shift"   }, "m", function ()
-                  local c = awful.client.restore() if c then c:emit_signal( "request::activate", "key.unminimize", {raise = true}) end end,
-              {description = "restore minimized", group = "client"}),
+    awful.key({ modkey, "Shift"   }, "m",
+    function ()
+        local c = awful.client.restore()
+        if c then
+            c:emit_signal( "request::activate", "key.unminimize", {raise = true})
+        end
+    end,
+        {description = "restore minimized", group = "client"}),
 
     -- Increase window gap
     awful.key({ modkey,           }, "[", function () awful.tag.incgap(2)                end,
@@ -382,3 +388,5 @@ clientbuttons = gears.table.join(
         awful.mouse.client.resize(c)
     end)
 )
+
+root.keys(globalkeys)

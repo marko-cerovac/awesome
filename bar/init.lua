@@ -11,7 +11,6 @@ local wibox = require("wibox")
 -- Themes library
 local beautiful = require("beautiful")
 
--- Notification library
 local menubar = require("menubar")
 -- local hotkeys_popup = require("awful.hotkeys_popup")
 
@@ -19,18 +18,6 @@ local widgets = require("widgets")
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
-
-
--- Click to switch to client
-local tasklist_buttons = gears.table.join(
-     awful.button({ }, 1, function (c)
-                              if c == client.focus then c.minimized = true
-                              else c:emit_signal( "request::activate", "tasklist", {raise = true})
-                              end
-                          end),
-     awful.button({ }, 3, function()
-                              awful.menu.client_list({ theme = { width = 250 } })
-                          end))
 
 
 local function set_wallpaper(s)
@@ -90,68 +77,14 @@ awful.screen.connect_for_each_screen(function(s)
 		widget = wibox.container.margin
 	}
 
-
-    -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist {
-        screen  = s,
-        filter  = awful.widget.tasklist.filter.currenttags,
-        buttons = tasklist_buttons,
-		style = {
-			shape_border_color_focus = beautiful.tasklist_border_focus,
-			shape = widgets.shapes.pill,
-			disable_icon = true,
-		},
-		layout = {
-			spacing = 2,
-			spacing_widget = {
-				{
-					widget = wibox.widget.separator
-				},
-				valign = "center",
-				halign = "center",
-			},
-			layout = wibox.layout.fixed.horizontal
-		},
-		 widget_template = {
-			{
-				{
-					{
-						{
-							{
-								id     = 'icon_role',
-								widget = wibox.widget.imagebox,
-							},
-							margins = 2,
-							widget  = wibox.container.margin,
-						},
-						{
-							id     = 'text_role',
-							widget = wibox.widget.textbox,
-						},
-						layout = wibox.layout.fixed.horizontal,
-					},
-					left  = 14,
-					right = 14,
-					widget = wibox.container.margin
-				},
-				id     = 'background_role',
-                forced_width = 136,
-				widget = wibox.container.background,
-			},
-			top = 4,
-			bottom = 4,
-			widget = wibox.container.margin
-		}
-    }
-
     -- Create the wibox
     s.mywibox = awful.wibar({
 		position = "top",
 		screen = s,
-		bg = beautiful.bg_alt,
-		height = 34,
-		-- shape = widgets.shapes.pill,
-		-- border_width = 4,
+		bg = beautiful.bg,
+		height = 36,
+		shape = widgets.shapes.pill,
+		border_width = 6,
 	})
 
     -- Add widgets
@@ -161,10 +94,9 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             spacing = 6,
             widgets.oslogo,
-            s.mytaglist,
             s.mylayout,
         },
-        s.mytasklist, -- Middle widget
+        s.mytaglist,
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             spacing = 12,

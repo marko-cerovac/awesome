@@ -48,7 +48,7 @@ Volume.volume = wibox.widget {
 	widget = wibox.container.margin
 }
 Volume.volume.widget:connect_signal("mouse::enter", function (c)
-    c:set_bg(beautiful.highlight)
+    c:set_bg(beautiful.bg_light)
 end)
 Volume.volume.widget:connect_signal("mouse::leave", function (c)
     c:set_bg(beautiful.bg)

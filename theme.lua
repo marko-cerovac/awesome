@@ -3,16 +3,13 @@
 ---------------------------
 
 local theme_assets = require("beautiful.theme_assets")
-local xresources = require("beautiful.xresources")
-local dpi = xresources.apply_dpi
--- local gears = require("gears")
+local xresources   = require("beautiful.xresources")
+local dpi          = xresources.apply_dpi
+local gfs          = require("gears.filesystem")
+local themes_path  = gfs.get_themes_dir()
 
-local gfs = require("gears.filesystem")
-local themes_path = gfs.get_themes_dir()
 
 local theme = {}
-
-theme.font          = "SauceCodePro Nerd Font 10"
 
 local colorscheme = require("colorthemes.material-deep-ocean")
 -- local colorscheme = require("colorthemes.material-oceanic")
@@ -21,7 +18,9 @@ for key, value in pairs(colorscheme) do
     theme[key] = value
 end
 
-theme.bg_normal     = theme.highlight
+theme.font          = "SauceCodePro Nerd Font 10"
+
+theme.bg_normal     = theme.bg_light
 theme.bg_focus      = theme.bg
 theme.bg_urgent     = theme.bg
 theme.bg_minimize   = theme.bg
@@ -42,43 +41,46 @@ theme.border_focus  = theme.accent
 theme.border_marked = theme.red
 
 -- Taglist colors
-theme.taglist_bg_focus = theme.bg
-theme.taglist_bg_empty = theme.bg
+theme.taglist_bg_focus    = theme.bg
+theme.taglist_bg_empty    = theme.bg
 theme.taglist_bg_occupied = theme.bg
-theme.taglist_bg_urgent = theme.bg
+theme.taglist_bg_urgent   = theme.bg
 
-theme.taglist_fg_focus = theme.white
-theme.taglist_fg_empty = theme.disabled
+theme.taglist_fg_focus    = theme.white
+theme.taglist_fg_empty    = theme.disabled
 theme.taglist_fg_occupied = theme.paleblue
-theme.taglist_fg_urgent = theme.red
+theme.taglist_fg_urgent   = theme.red
 
 -- Tasklist colors
-theme.tasklist_bg_normal = theme.bg
-theme.tasklist_fg_normal = theme.disabled
-theme.tasklist_bg_focus = theme.bg
-theme.tasklist_fg_focus = theme.fg
-theme.tasklist_border = theme.active
+theme.tasklist_bg_normal    = theme.bg
+theme.tasklist_fg_normal    = theme.disabled
+theme.tasklist_bg_focus     = theme.bg
+theme.tasklist_fg_focus     = theme.fg
+theme.tasklist_border       = theme.selected
 theme.tasklist_border_focus = theme.accent
 
 -- Widgets colors
-theme.battery_fg = theme.green
+theme.battery_fg    = theme.green
 theme.brightness_fg = theme.blue
-theme.volume_fg = theme.purple
-theme.network_fg = theme.red
-theme.keyboard_fg = theme.orange
-theme.clock_fg = theme.yellow
+theme.volume_fg     = theme.purple
+theme.network_fg    = theme.red
+theme.keyboard_fg   = theme.orange
+theme.clock_fg      = theme.yellow
 
 -- Hotkeys popup
-theme.hotkeys_opacity = 1
-theme.hotkeys_bg = theme.bg_alt .. "D0"
-theme.hotkeys_fg = theme.fg
--- theme.hotkeys_border_width = 0
--- theme.hotkeys_border_color = theme.accent
-theme.hotkeys_modifiers_fg = theme.paleblue
-theme.hotkeys_label_fg = theme.bg_alt
-theme.hotkeys_font = "SauceCodePro Nerd Font 10"
-theme.hotkeys_description_font = "SauceCodePro Nerd Font 10"
-theme.hotkeys_group_margin = 28
+theme.hotkeys_opacity          = 1
+theme.hotkeys_bg               = theme.bg_dark .. "D0"
+theme.hotkeys_fg               = theme.fg
+-- theme.hotkeys_border_width     = 0
+-- theme.hotkeys_border_color     = theme.accent
+theme.hotkeys_modifiers_fg     = theme.paleblue
+theme.hotkeys_label_fg         = theme.bg_dark
+theme.hotkeys_font             = theme.font
+theme.hotkeys_description_font = theme.font
+theme.hotkeys_group_margin     = 28
+theme.hotkeys_shape            = function (cr, w, h)
+    require("gears").shape.rounded_rect(cr,w,h,10)
+end
 
 -- Add utilities directory
 
@@ -95,9 +97,9 @@ theme.hotkeys_group_margin = 28
 -- Example:
 --theme.taglist_bg_focus = "#ff0000"
 theme.titlebar_bg_normal = theme.bg
-theme.titlebar_bg_focus = theme.bg
+theme.titlebar_bg_focus  = theme.bg
 theme.titlebar_fg_normal = theme.disabled
-theme.titlebar_fg_focus = theme.fg
+theme.titlebar_fg_focus  = theme.fg
 
 -- Generate taglist squares:
 local taglist_square_size = dpi(4)
@@ -113,46 +115,46 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 -- notification_[bg|fg]
 -- notification_[width|height|margin]
 -- notification_[border_color|border_width|shape|opacity]
-theme.notification_font = "SauceCodePro Nerd Font 12"
-theme.notification_bg = theme.bg
-theme.notification_fg = theme.fg
+theme.notification_font         = "SauceCodePro Nerd Font 12"
+theme.notification_bg           = theme.bg
+theme.notification_fg           = theme.fg
 -- theme.notification_border_color = theme.accent
 theme.notification_border_width = 0
--- theme.notification_opacity = 0.8
+-- theme.notification_opacity      = 0.8
 
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
 theme.menu_submenu_icon = themes_path.."default/submenu.png"
-theme.menu_height = dpi(20)
-theme.menu_width  = dpi(240)
+theme.menu_height       = dpi(20)
+theme.menu_width        = dpi(240)
 -- theme.menu_border_color = theme.accent
-theme.bg_normal = theme.bg_alt .. "C0"
-theme.fg_normal = theme.fg
-theme.bg_focus = theme.active .. "C0"
-theme.fg_focus = theme.accent
-theme.menu_font = "SauceCodePro Nerd Font 12"
+theme.bg_normal         = theme.bg_dark .. "C0"
+theme.fg_normal         = theme.fg
+theme.bg_focus          = theme.selected .. "C0"
+theme.fg_focus          = theme.accent
+theme.menu_font         = "SauceCodePro Nerd Font 12"
 
 -- Define the image to load
 theme.wallpaper = "/home/marko/.config/awesome/util/wallpaper.jpg"
 
 -- You can use your own layout icons like this:
-theme.layout_fairh = themes_path.."default/layouts/fairhw.png"
-theme.layout_fairv = themes_path.."default/layouts/fairvw.png"
-theme.layout_floating  = themes_path.."default/layouts/floatingw.png"
-theme.layout_magnifier = themes_path.."default/layouts/magnifierw.png"
-theme.layout_max = themes_path.."default/layouts/maxw.png"
-theme.layout_fullscreen = themes_path.."default/layouts/fullscreenw.png"
+-- theme.layout_fairh      = themes_path.."default/layouts/fairhw.png"
+theme.layout_fairv      = themes_path.."default/layouts/fairvw.png"
+theme.layout_floating   = themes_path.."default/layouts/floatingw.png"
+theme.layout_magnifier  = themes_path.."default/layouts/magnifierw.png"
+theme.layout_max        = themes_path.."default/layouts/maxw.png"
+-- theme.layout_fullscreen = themes_path.."default/layouts/fullscreenw.png"
 theme.layout_tilebottom = themes_path.."default/layouts/tilebottomw.png"
-theme.layout_tileleft   = themes_path.."default/layouts/tileleftw.png"
-theme.layout_tile = themes_path.."default/layouts/tilew.png"
-theme.layout_tiletop = themes_path.."default/layouts/tiletopw.png"
-theme.layout_spiral  = themes_path.."default/layouts/spiralw.png"
-theme.layout_dwindle = themes_path.."default/layouts/dwindlew.png"
-theme.layout_cornernw = themes_path.."default/layouts/cornernww.png"
-theme.layout_cornerne = themes_path.."default/layouts/cornernew.png"
-theme.layout_cornersw = themes_path.."default/layouts/cornersww.png"
-theme.layout_cornerse = themes_path.."default/layouts/cornersew.png"
+-- theme.layout_tileleft   = themes_path.."default/layouts/tileleftw.png"
+theme.layout_tile       = themes_path.."default/layouts/tilew.png"
+-- theme.layout_tiletop    = themes_path.."default/layouts/tiletopw.png"
+-- theme.layout_spiral     = themes_path.."default/layouts/spiralw.png"
+theme.layout_dwindle    = themes_path.."default/layouts/dwindlew.png"
+theme.layout_cornernw   = themes_path.."default/layouts/cornernww.png"
+-- theme.layout_cornerne   = themes_path.."default/layouts/cornernew.png"
+-- theme.layout_cornersw   = themes_path.."default/layouts/cornersww.png"
+-- theme.layout_cornerse   = themes_path.."default/layouts/cornersew.png"
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.

@@ -40,7 +40,7 @@ local textclock = wibox.widget {
 -- clockTooltip:add_to_object(textclock)
 
 textclock.widget:connect_signal("mouse::enter", function (c)
-	c:set_bg(beautiful.highlight)
+	c:set_bg(beautiful.bg_light)
     -- clockTooltip.text = os.date("Today is %A %B %d %Y\nThe time is %T")
 end)
 textclock.widget:connect_signal("mouse::leave", function (c)
