@@ -1,0 +1,8 @@
+*.jpg
+*.jpeg
+*.png
+old-artifacts/*
+battery
+brightness
+default-rc.lua
+default-theme.lua
