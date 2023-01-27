@@ -85,7 +85,7 @@ require('bar')
 
 -- Load keybindings
 require('mappings')
-root.keys(globalkeys)
+root.keys(global_keys)
 
 -- Load titlebars
 -- require("titlebar")

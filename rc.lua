@@ -80,3 +80,17 @@ awful.layout.layouts = {
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
 }
+
+local set_wallpaper = function(screen)
+    gears.wallpaper.maximized(utils .. "wallpaper", screen, true)
+end
+
+-- re-set wallpaper when a screen's geometry changes
+screen.connect_signal("property::geometry", set_wallpaper)
+
+awful.screen.connect_for_each_screen(function(screen)
+
+    -- set the wallpaper
+    set_wallpaper(screen)
+
+end)

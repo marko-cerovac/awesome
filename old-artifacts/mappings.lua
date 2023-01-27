@@ -22,7 +22,7 @@ root.buttons(gears.table.join(
     awful.button({ }, 5, awful.tag.viewprev)
 ))
 
-globalkeys = gears.table.join(
+global_keys = gears.table.join(
 
     -- Awesome
 
@@ -322,7 +322,7 @@ clientkeys = gears.table.join(
 
 -- Workspace mappings
 for i = 1, 5 do
-    globalkeys = gears.table.join(globalkeys,
+    global_keys = gears.table.join(global_keys,
         -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,
                   function ()
