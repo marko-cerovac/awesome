@@ -327,7 +327,7 @@ clientkeys = gears.table.join(
 )
 
 -- Workspace mappings
-for i = 1, 5 do
+for i = 1, 7 do
     globalkeys = gears.table.join(globalkeys,
         -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,
