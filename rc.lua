@@ -2,13 +2,10 @@
 pcall(require, "luarocks.loader")
 
 -- import libraries:
-local gears         = require "gears"
-local awful         = require "awful"
-local wibox         = require "wibox"
-local beautiful     = require "beautiful"
-local naughty       = require "naughty"
-local menubar       = require "menubar"
-local hotkeys_popup = require "awful.hotkeys_popup"
+local gears     = require "gears"
+local awful     = require "awful"
+local beautiful = require "beautiful"
+local naughty   = require "naughty"
 require "awful.autofocus"
 
 -- enable autofocus
@@ -41,8 +38,6 @@ do
         in_error = false
     end)
 end
-
-
 
 -- set default variables
 terminal   = "alacritty"
@@ -81,16 +76,15 @@ awful.layout.layouts = {
     -- awful.layout.suit.corner.se,
 }
 
-local set_wallpaper = function(screen)
-    gears.wallpaper.maximized(utils .. "wallpaper", screen, true)
-end
-
--- re-set wallpaper when a screen's geometry changes
-screen.connect_signal("property::geometry", set_wallpaper)
-
 awful.screen.connect_for_each_screen(function(screen)
-
     -- set the wallpaper
-    set_wallpaper(screen)
+    gears.wallpaper.maximized(utils .. "wallpaper", screen, true)
 
+    -- require "bar".create(screen)
 end)
+
+-- add client rules
+require "rules"
+
+-- add signals
+require "signals"
