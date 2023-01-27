@@ -23,7 +23,7 @@ end
 -- handle runtime errors after startup
 do
     local in_error = false
-    awesome.connect_signal("debug::error", function (err)
+    awesome.connect_signal("debug::error", function(err)
         -- make sure we don't go into an endless error loop
         if in_error then
             return
@@ -80,7 +80,13 @@ awful.screen.connect_for_each_screen(function(screen)
     -- set the wallpaper
     gears.wallpaper.maximized(utils .. "wallpaper", screen, true)
 
-    -- require "bar".create(screen)
+    -- each screen has its own tag table.
+    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" },
+        screen,
+        awful.layout.layouts[1])
+
+    -- create the bar
+    require "bar".create(screen)
 end)
 
 -- add client rules
