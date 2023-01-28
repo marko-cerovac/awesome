@@ -1,4 +1,5 @@
 local awful = require "awful"
+local gears = require "gears"
 local wibox = require "wibox"
 
 local M = {}
@@ -7,7 +8,11 @@ M.create = function(screen)
 
     screen.mywibox = awful.wibar({
         position = "top",
-        screen = screen
+        screen = screen,
+        -- bg = beautiful.bar_bg,
+        height = 36,
+        shape = gears.shape.rounded_bar,
+        border_width = 6
     })
 
     local launcher = require "bar.os_logo".launcher
