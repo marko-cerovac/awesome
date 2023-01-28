@@ -8,9 +8,6 @@ local wibox = require("wibox")
 -- Themes library
 local beautiful = require("beautiful")
 
--- Shapes and sepparators library
--- local pill = require("widgets.shapes").pill
-
 -- Widgets
 
 local poweroff = wibox.widget {

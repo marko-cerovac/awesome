@@ -11,7 +11,6 @@ Widgets.network = require("widgets.network")
 Widgets.oslogo = require("widgets.oslogo")
 Widgets.sepparators = require("widgets.sepparators")
 Widgets.volume = require("widgets.volume")
-Widgets.shapes = require("widgets.shapes")
 Widgets.taglist = require("widgets.taglist")
 
 return Widgets

@@ -1,5 +1,6 @@
 -- Standard awesome library
 local awful = require("awful")
+local gears = require("gears")
 
 -- Widget and layout library
 local wibox = require("wibox")
@@ -9,9 +10,6 @@ local beautiful = require("beautiful")
 
 -- Notification library
 local naughty = require("naughty")
-
--- Shapes and sepparators library
-local pill = require("widgets.shapes").pill
 
 local Battery = {}
  -- The battery program returns the charging state and the battery capacity
@@ -82,7 +80,7 @@ Battery.battery = wibox.widget {
 		},
 		bg = beautiful.bg,
 		fg = beautiful.battery_fg,
-		shape = pill,
+		shape = gears.shape.rounded_bar,
 		widget = wibox.container.background
 	},
 	top = 4,

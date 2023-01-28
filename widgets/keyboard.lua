@@ -1,14 +1,12 @@
 -- Standard awesome library
 local awful = require("awful")
+local gears = require("gears")
 
 -- Widget and layout library
 local wibox = require("wibox")
 
 -- Themes library
 local beautiful = require("beautiful")
-
--- Shapes and sepparators library
-local pill = require("widgets.shapes").pill
 
 -- Keyboard map indicator and switcher
 local keyboardlayout = wibox.widget {
@@ -26,7 +24,7 @@ local keyboardlayout = wibox.widget {
 		},
 		fg = beautiful.keyboard_fg,
 		bg = beautiful.bg,
-		shape = pill,
+		shape = gears.shape.rounded_bar,
 		widget = wibox.container.background
 	},
 	top = 4,

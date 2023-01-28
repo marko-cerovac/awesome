@@ -1,12 +1,10 @@
 -- Widget and layout library
 local wibox = require("wibox")
+local gears = require("gears")
 -- local awful = require("awful")
 
 -- Themes library
 local beautiful = require("beautiful")
-
--- Shapes and sepparators library
-local pill = require("widgets.shapes").pill
 
 -- Create a textclock widget
 local textclock = wibox.widget {
@@ -28,7 +26,7 @@ local textclock = wibox.widget {
 		},
 		fg = beautiful.clock_fg,
 		bg = beautiful.bg,
-		shape = pill,
+		shape = gears.shape.rounded_bar,
 		widget = wibox.container.background
 	},
 	top = 4,

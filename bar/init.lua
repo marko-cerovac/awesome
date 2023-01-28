@@ -19,7 +19,6 @@ local widgets = require("widgets")
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 
-
 local function set_wallpaper(s)
     -- Wallpaper
     if beautiful.wallpaper then
@@ -48,7 +47,7 @@ awful.screen.connect_for_each_screen(function(s)
 		wibox.container.background(
 			wibox.container.margin( s.mylayoutbox, 26, 26),
 			beautiful.bg,
-			widgets.shapes.pill
+            gears.shape.rounded_bar
 		),
 		8, 8, 4, 4
 	)
@@ -69,7 +68,7 @@ awful.screen.connect_for_each_screen(function(s)
 				widget = wibox.container.margin
 			},
 			bg = beautiful.taglist_bg_empty,
-			shape = widgets.shapes.pill,
+            shape = gears.shape.rounded_bar,
 			widget = wibox.container.background
 		},
 		top = 4,
@@ -83,7 +82,7 @@ awful.screen.connect_for_each_screen(function(s)
 		screen = s,
 		bg = beautiful.bg,
 		height = 36,
-		shape = widgets.shapes.pill,
+		shape = gears.shape.rounded_bar,
 		border_width = 6,
 	})
 
