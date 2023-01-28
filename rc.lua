@@ -43,7 +43,7 @@ end
 terminal   = "alacritty"
 editor     = os.getenv "editor" or "vi"
 editor_cmd = terminal .. " -e " .. editor
-utils      = gears.filestystem.get_configuration_dir() .. "util/"
+utils      = gears.filesystem.get_configuration_dir() .. "util/"
 scripts    = utils .. "scripts/"
 
 -- load the theme file
@@ -88,6 +88,9 @@ awful.screen.connect_for_each_screen(function(screen)
     -- create the bar
     require "bar".create(screen)
 end)
+
+-- create key and mouse mappings
+require "mappings"
 
 -- add client rules
 require "rules"
