@@ -14,6 +14,7 @@ local Network = {}
 -- Network widget
 Network.networkName, Network.networkTimer = awful.widget.watch(
  [[bash -c 'iwgetid | grep -o \".*']],
+ -- [[bash -c 'iwctl station wlan0 show | grep -o Connected network.*']],
 	30,
 	function(widget, stdout)
 		widget:set_markup(stdout:gsub([["]], ""))

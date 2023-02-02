@@ -11,16 +11,10 @@ local beautiful = require("beautiful")
 local Volume = {}
 
 Volume.volumeLevel, Volume.volumeTimer = awful.widget.watch(
-	util_dir .. "volume.sh",
+	"pamixer --get-volume-human",
 	60,
 	function(widget, stdout)
-        widget.align = "center"
-		if stdout:sub(1, 1) == "M" then
-			widget:set_markup(" Muted")
-		else
-			local level = tonumber(stdout)
-			widget:set_markup(" " .. level .. "%")
-		end
+        widget:set_markup(" " .. stdout)
 	end
 )
 
@@ -29,7 +23,9 @@ Volume.volume = wibox.widget {
 	{
 		{
 			{
-				widget = Volume.volumeLevel
+				Volume.volumeLevel,
+                Volume.mutedFlag,
+                layout = wibox.layout.align.horizontal
 			},
 			left = 16,
 			right = 16,

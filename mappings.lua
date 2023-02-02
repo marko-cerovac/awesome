@@ -180,11 +180,15 @@ globalkeys = gears.table.join(
     awful.key({ modkey },            "n",     function () awful.spawn("thunar") end,
               {description = "Launch Thunar file manager", group = "launcher"}),
 
-    -- Brave
-    awful.key({ modkey },            "b",     function () awful.spawn("brave") end,
+    -- Browser
+    --[[ awful.key({ modkey },            "b",     function () awful.spawn("brave") end,
               {description = "Launch Brave browser", group = "launcher"}),
     awful.key({ modkey },            "i",     function () awful.spawn("brave --incognito") end,
-              {description = "Launch Brave browser (incognito mode)", group = "launcher"}),
+              {description = "Launch Brave browser (incognito mode)", group = "launcher"}), ]]
+    awful.key({ modkey },            "b",     function () awful.spawn("firefox") end,
+              {description = "Launch Firefox browser", group = "launcher"}),
+    awful.key({ modkey },            "i",     function () awful.spawn("firefox --private-window") end,
+              {description = "Launch Firefox browser (private window)", group = "launcher"}),
 
     -- Pavucontrol
     awful.key({ modkey },            "p",     function () awful.spawn("pavucontrol") end,
@@ -218,21 +222,21 @@ globalkeys = gears.table.join(
 
 	-- Mute the volume
 	awful.key({},	  "XF86AudioMute", function ()
-		awful.spawn("pactl set-sink-mute 0 toggle")
+		awful.spawn("pamixer -t")
 		widgets.volume.volumeTimer:emit_signal("timeout")
 		end,
 			  {description = "Mute volume", group = "control"}),
 
 	-- Raise the volume
 	awful.key({},	  "XF86AudioRaiseVolume", function()
-		awful.spawn("pactl set-sink-volume 0 +10%")
+		awful.spawn("pamixer -i 5")
 		widgets.volume.volumeTimer:emit_signal("timeout")
 		end,
 			  {description = "Raise volume", group = "control"}),
 
 	-- Lower the volume
 	awful.key({},	  "XF86AudioLowerVolume", function()
-		awful.spawn("pactl set-sink-volume 0 -10%")
+		awful.spawn("pamixer -d 5")
 		widgets.volume.volumeTimer:emit_signal("timeout")
 		end,
 			  {description = "Lower volume", group = "control"}),
